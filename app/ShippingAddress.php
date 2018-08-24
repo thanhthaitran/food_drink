@@ -9,6 +9,7 @@ class ShippingAddress extends Model
 {
     use SoftDeletes;
     const ADDRESS = 0;
+    const ADDRESS_DEFAULT = 1;
 
     protected $fillable = [
         'user_id',
