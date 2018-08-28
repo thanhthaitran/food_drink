@@ -41,6 +41,7 @@
                   <label for="exampleInputRole">{{ __('user.admin.show.address_shipping') }}</label>
                   @foreach ($user->shippingAddresses as $shipping)
                     <input type="text" class="form-control" disabled name="address" value="{{ $shipping->address }}">
+                    <br>
                   @endforeach
                 </div>
                 <div class="form-group">

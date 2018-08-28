@@ -1,7 +1,6 @@
 cartProduct = JSON.parse(localStorage.carts);
 var products = JSON.parse(localStorage.getItem('carts'));
 var order = [];
-var shipping_id = '';
 products.forEach(function (product) {
   product_data = {};
   product_data.id = product.id;
@@ -46,32 +45,6 @@ function itemCart(cartProduct) {
   $('.sub-total').html(subTotal);
 }
 
-function homeAddress() {
-  $(document).on('click', '#home-address-shipping', function(event) {
-    event.preventDefault();
-    $('#address').show();
-    var homeAddress = $('#home-address').text();
-    $('#address').val(homeAddress);
-  });
-}
-
-function newAddress() {
-  $(document).on('click', '#new-address-shipping', function(event) {
-    event.preventDefault();
-    $('#address').show();
-    $('#address').val('');
-  });
-}
-
-function oldAdress() {
-  $(document).on('click', '#old-address-shipping', function(event) {
-    event.preventDefault();
-    $('#address').show();
-    var oldAddress = $("#address-shipping option:selected").text();
-    shipping_id =  $("#address-shipping option:selected").val();
-    $('#address').val(oldAddress);
-  });
-}
 function addOrder() {
   $(document).on('click', '#add-order', function (event) {
     event.preventDefault();
@@ -87,6 +60,7 @@ function addOrder() {
         address: address,
         shipping_id: shipping_id,
         product: order,
+        home: home,
       },
       success: function() {
         localStorage.removeItem('carts');
@@ -114,9 +88,6 @@ $(document).ready(function() {
   $('#address').hide();
   itemCart(cartProduct);
   userInfo();
-  oldAdress();
-  homeAddress();
-  newAddress();
   addOrder();
   validation(cartProduct);
 });

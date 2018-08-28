@@ -1,5 +1,5 @@
 var shipping_id = '';
-
+var home = '';
 function userInfo() {
   $.ajax({
     type: 'GET',
@@ -29,6 +29,8 @@ function homeAddress() {
     event.preventDefault();
     $('#address').show();
     var homeAddress = $('#home-address').text();
+    home = 1;
+    shipping_id = '';
     $('#address').val(homeAddress);
   });
 }
@@ -36,6 +38,8 @@ function homeAddress() {
 function newAddress() {
   $(document).on('click', '#new-address-shipping', function(event) {
     event.preventDefault();
+    shipping_id = '';
+    home = '';
     $('#address').show();
     $('#address').val('');
   });
@@ -47,6 +51,7 @@ function oldAdress() {
     $('#address').show();
     var oldAddress = $("#address-shipping option:selected").text();
     shipping_id =  $("#address-shipping option:selected").val();
+    home = '';
     $('#address').val(oldAddress);
   });
 }
