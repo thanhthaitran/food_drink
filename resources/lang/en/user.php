@@ -78,7 +78,7 @@
                 'phone' => 'Phone:',
                 'home_address' => 'Home address:',
                 'shipping_address' => 'Shipping address:',
-
+                'new_address' => 'New shipping address: ',
             ]
         ]
     ];

@@ -7,6 +7,12 @@
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">{{ __('user.user.profile.profile') }}</h3>
+          <div class="edit-profile">
+            <span class="pull-right">
+              <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+            </span>
+            <div class="clear-fix"></div>
+          </div>
         </div>
         <div class="panel-body">
           <div class="row">
@@ -34,7 +40,7 @@
                   <tr>
                     <td>{{ __('user.user.profile.shipping_address') }}</td>
                     <td id="user-address-shipping">
-
+                    
                     </td>
                   </tr>
                 </tbody>
@@ -43,10 +49,7 @@
           </div>
         </div>
         <div class="panel-footer">
-          <span class="pull-right">
-            <a href="{{ route('profile.edit') }}" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-          </span>
-          <div class="clear-fix"></div>
+          <br>
         </div>
       </div>
     </div>
@@ -54,5 +57,6 @@
 </div>
 @endsection
 @section('scripts')
-  <script type="text/javascript" src="{{ asset('js/user/showProfileUser.js') }}"></script> 
+  <script type="text/javascript" src="{{ asset('js/user/showProfileUser.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/user/shippingAddress.js') }}"></script>
 @endsection
