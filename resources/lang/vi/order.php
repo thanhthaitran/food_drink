@@ -25,7 +25,11 @@
                 'complete' => 'Hoàn thành',
                 'your_checkout' => 'Kiểm tra đơn hàng của bạn',
                 'checkout' => 'Thanh toán',
-                'place_delivery' => 'Địa chỉ giao hàng',
+                'place_delivery' => 'Địa chỉ giao hàng:', 
+                'old_place_delivery' => 'Địa điểm giao hàng cũ', 
+                'home_address' => 'Chọn địa chỉ nhà', 
+                'old_address' => 'Chọn địa điểm giao hàng cũ', 
+                'new_address' => 'Chọn địa điểm giao hàng mới',
             ],
             'show' => [
                 'title' => 'Hiển Thị Chi Tiết Đơn Hàng',

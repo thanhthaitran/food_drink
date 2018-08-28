@@ -12,7 +12,26 @@
           <div class="box-border">
             <div class="row">
               <div class="col-sm-12 user-profile">
-              
+                <div class="col-sm-12"> 
+                  <p><i class="fa fa-check-circle text-primary"></i>{{ __('order.user.create.your_name') }}<span id="name"></span></p> 
+                  <p><i class="fa fa-check-circle text-primary"></i>{{ __('order.user.create.your_email') }}<span id="email"></span></p> 
+                  <p><i class="fa fa-check-circle text-primary"></i>{{ __('order.user.create.your_address') }}<span id="home-address"></span></p> 
+                  <p><i class="fa fa-check-circle text-primary"></i>{{ __('order.user.create.your_phone') }}<span id="phone"></span></p> 
+                  <form> 
+                    <label>{{ __('order.user.create.old_place_delivery') }}</label> 
+                    <select class="form-control" id="address-shipping"> 
+                    </select> 
+                    <label>{{ __('order.user.create.place_delivery') }}</label> 
+                    <button id="home-address-shipping" class="home-address">{{ __('order.user.create.home_address') }}</button> 
+                    <button id="old-address-shipping" class="home-address">{{ __('order.user.create.old_address') }}</button> 
+                    <button id="new-address-shipping" class="home-address">{{ __('order.user.create.new_address') }}</button> 
+                    <input type="text" class="form-control input" id="address"> 
+                    <span id="address_error" class="help-block" hidden> 
+                      <strong class="text-danger"></strong> 
+                    </span> 
+                    <button class="button" id="add-order"><i class="fa fa-angle-double-right"></i>&nbsp; <span>{{ __('order.user.create.complete') }}</span></button> 
+                  </form> 
+                </div> 
               </div>
             </div>
           </div>

@@ -151,3 +151,16 @@ a.cancel-edit-order:hover {
 .acc-login .box-authentication input {
   width: 100%;
 }
+.home-address { 
+  display: block; 
+  background: #4caf50; 
+  padding: 4px 10px; 
+  font-size: 12px; 
+  border: 2px solid #4caf50; 
+  color: #fff; 
+  font-weight: normal; 
+  -webkit-transition: all 0.3s linear; 
+  font-family: "Roboto", sans-serif; 
+  margin: 5px 0; 
+  border-radius: 5px;  
+} 
