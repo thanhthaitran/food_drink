@@ -45,19 +45,21 @@ class PostsController extends Controller
         $post = Post::findOrFail($request->id);
         $product = Product::findOrFail($post->product_id);
         $post->update(['status' => !$post->status]);
-        $data = [
-            "avg_rate" => ($product->total_rate - $post->rate) / ($product->sum_rate - 1),
-            "sum_rate" => $product->sum_rate - 1,
-            "total_rate" => $product->total_rate - $post->rate,
-        ];
-        if ($post->status == Post::ENABLE) {
+        if ($post->type == Post::REVIEW) {
             $data = [
-                "avg_rate" => ($post->rate + $product->total_rate) / ($product->sum_rate + 1),
-                "sum_rate" => $product->sum_rate + 1,
-                "total_rate" => $post->rate + $product->total_rate,
+                "avg_rate" => ($product->total_rate - $post->rate) / ($product->sum_rate - 1),
+                "sum_rate" => $product->sum_rate - 1,
+                "total_rate" => $product->total_rate - $post->rate,
             ];
+            if ($post->status == Post::ENABLE) {
+                $data = [
+                    "avg_rate" => ($post->rate + $product->total_rate) / ($product->sum_rate + 1),
+                    "sum_rate" => $product->sum_rate + 1,
+                    "total_rate" => $post->rate + $product->total_rate,
+                ];
+            }
+            $product->update($data);
         }
-        $product->update($data);
         return response()->json($post);
     }
     
@@ -73,11 +75,13 @@ class PostsController extends Controller
         try {
             $post->delete();
             $product = Product::findOrFail($post->product_id);
-            $product->update([
-                "avg_rate" => ($product->total_rate - $post->rate) / ($product->sum_rate - 1),
-                 "sum_rate" => $product->sum_rate - 1,
-                 "total_rate" => $product->total_rate - $post->rate,
-            ]);
+            if ($post->type == Post::REVIEW && $post->status == Post::ENABLE) {
+                $product->update([
+                    "avg_rate" => ($product->total_rate - $post->rate) / ($product->sum_rate - 1),
+                    "sum_rate" => $product->sum_rate - 1,
+                    "total_rate" => $product->total_rate - $post->rate,
+                ]);
+            }
             flash(trans('message.post.success_delete'))->success();
         } catch (Exception $e) {
             flash(trans('message.post.fail_delete'))->error();

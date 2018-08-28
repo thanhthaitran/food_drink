@@ -41,6 +41,14 @@
                   <input type="text" class="form-control" name="address" value="{{$user->userInfo->address}}">
                 </div>
                 <div class="form-group">
+                  <label for="address">{{ __('profile.user.update.address_shipping') }}</label>
+                  <select class="form-control" id="sel1" name="shipping_id">
+                    @foreach ($user->shippingAddresses as $shipping)
+                      <option value="{{ $shipping->id }}" {{ $shipping->is_default == App\ShippingAddress::ADDRESS_DEFAULT ? 'selected="selected"' : '' }}>{{ $shipping->address }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="exampleInputRole">{{__('user.admin.edit.phone')}}</label>
                   <input type="text" class="form-control" name="phone" value="{{$user->userInfo->phone}}">
                 </div>
