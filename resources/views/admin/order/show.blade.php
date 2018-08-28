@@ -37,13 +37,13 @@
                   <input type="email" class="form-control" disabled name="email" value="{{ $order->user->email }}">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputRole">{{__('order.admin.show.address')}}</label>
-                  <input type="text" class="form-control" disabled name="address" value="{{ $order->address }}">
-                </div>
-                <div class="form-group">
                   <label for="exampleInputRole">{{__('order.admin.show.phone')}}</label>
                   <input type="text" class="form-control" disabled name="phone" value="{{ $order->user->userInfo->phone }}">
-                </div>    
+                </div>   
+                <div class="form-group">
+                  <label for="exampleInputRole">{{__('order.admin.show.address')}}</label>
+                  <input type="text" class="form-control" disabled name="address" value="{{ $order->user->userInfo->address }}">
+                </div> 
               </div>
             </form>
             @if (count($order->notes))

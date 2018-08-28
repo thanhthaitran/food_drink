@@ -1,7 +1,6 @@
 cartProduct = JSON.parse(localStorage.carts);
 var products = JSON.parse(localStorage.getItem('carts'));
 var order = [];
-var shipping_id = '';
 products.forEach(function (product) {
   product_data = {};
   product_data.id = product.id;
@@ -23,29 +22,6 @@ function validation(cartProduct) {
   $('#form-validation').append(show);
 }
 
-function userInfo() {
-  $.ajax({
-    type: 'GET',
-    url: '/api/profile',
-    headers: { 'authorization': 'Bearer '+ localStorage.getItem('access_token') },
-    success: function (response){
-      var html = '';
-      var user = response.data.user;
-      response.data.user.shipping_addresses.forEach(shipping => {
-        var select = '';
-        if (shipping.is_default == 1) {
-          select = 'selected';
-        }
-        html += '<option value="'+ shipping.id +'" '+ select +'>'+ shipping.address +'</option>'
-      });
-      $('.form-control').html(html);
-      $('#name').text(user.name);
-      $('#email').text(user.email);
-      $('#home-address').text(user.user_info.address);
-      $('#phone').text(user.user_info.phone);
-    }
-  });
-}
 function itemCart(cartProduct) {
   var total = 0;
   var subTotal = 0;
@@ -69,32 +45,6 @@ function itemCart(cartProduct) {
   $('.sub-total').html(subTotal);
 }
 
-function homeAddress() {
-  $(document).on('click', '#home-address-shipping', function(event) {
-    event.preventDefault();
-    $('#address').show();
-    var homeAddress = $('#home-address').text();
-    $('#address').val(homeAddress);
-  });
-}
-
-function newAddress() {
-  $(document).on('click', '#new-address-shipping', function(event) {
-    event.preventDefault();
-    $('#address').show();
-    $('#address').val('');
-  });
-}
-
-function oldAdress() {
-  $(document).on('click', '#old-address-shipping', function(event) {
-    event.preventDefault();
-    $('#address').show();
-    var oldAddress = $("#address-shipping option:selected").text();
-    shipping_id =  $("#address-shipping option:selected").val();
-    $('#address').val(oldAddress);
-  });
-}
 function addOrder() {
   $(document).on('click', '#add-order', function (event) {
     event.preventDefault();
@@ -107,10 +57,10 @@ function addOrder() {
         Authorization: 'Bearer ' +localStorage.getItem('access_token'),
       },
       data: {
-        total: $('.sub-total').attr('value'),
         address: address,
         shipping_id: shipping_id,
         product: order,
+        home: home,
       },
       success: function() {
         localStorage.removeItem('carts');
@@ -138,9 +88,6 @@ $(document).ready(function() {
   $('#address').hide();
   itemCart(cartProduct);
   userInfo();
-  oldAdress();
-  homeAddress();
-  newAddress();
   addOrder();
   validation(cartProduct);
 });

@@ -103,18 +103,20 @@ class OrderController extends ApiController
     {
         $total = 0;
         $user = Auth::user();
-        if ($request->shipping_id == null) {
-            $user->shippingAddresses()->create([
-                'user_id' => $user->id,
-                'address' => $request->address,
-                'is_default' => ShippingAddress::ADDRESS,
-            ]);
-        } else {
+        if ($request->shipping_id) {
             foreach ($user->shippingAddresses as $shipping) {
                 if ($shipping->id == $request->shipping_id) {
                     $request->address = $shipping->address;
                 }
             }
+        } elseif ($request->home) {
+            $request->address = $user->userInfo->address;
+        } else {
+            $user->shippingAddresses()->create([
+                'user_id' => $user->id,
+                'address' => $request->address,
+                'is_default' => ShippingAddress::ADDRESS,
+            ]);
         }
         foreach ($request->product as $product) {
             $product = Product::find($product['id']);
@@ -159,6 +161,16 @@ class OrderController extends ApiController
                 $total = 0;
                 $products = [];
                 DB::beginTransaction();
+                $user = Auth::user();
+                if ($request->shipping_id) {
+                    foreach ($user->shippingAddresses as $shipping) {
+                        if ($shipping->id == $request->shipping_id) {
+                            $request->address = $shipping->address;
+                        }
+                    }
+                } elseif ($request->home) {
+                    $request->address = $user->userInfo->address;
+                }
                 if ($request->product) {
                     foreach ($request->product as $product) {
                         $orderDetail = OrderDetail::where('order_id', $order->id)->where('product_id', $product['id'])->first();

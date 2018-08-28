@@ -4,13 +4,6 @@ var arrPathName = location.pathname.split("/");
 var id = arrPathName[2];
 var html = '';
 
-function showUser() {
-  $('#name-user').text(dataUser.name);
-  $('#email-user').text(dataUser.email);
-  $('#address-user').text(dataUser.user_info.address);
-  $('#phone-user').text(dataUser.user_info.phone);
-}
-
 function appendOrderDetail(orderDetail, total) {
   html += '<tr id="del-item'+ orderDetail.id +'">\
             <td class="cart_product"><img src="'+ orderDetail.image_url +'" alt="Product"></td>\
@@ -69,7 +62,6 @@ function changeQuantity(id, price) {
 }
 
 $(document).ready(function() {
-  showUser();
   getDetailOrder();
   $(document).on('click', '.del-item-cart', function(event) {
     event.preventDefault();
@@ -84,6 +76,7 @@ $(document).ready(function() {
     event.preventDefault();
     var data = [];
     var orderDetailData;
+    var address = $('#address').val().trim();
     order.forEach(order => {
       orderDetailData = {};
       var quantity = $('#quantity'+ order.id).val();
@@ -101,8 +94,9 @@ $(document).ready(function() {
         Authorization: 'Bearer ' + localStorage.getItem('access_token')
       },
       data: {
-        address: $('#address').val(),
-        product: data
+        address: address,
+        shipping_id: shipping_id,
+        product: data,
       },
       success: function (response){
         window.location.href = '/';

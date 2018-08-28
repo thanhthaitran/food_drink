@@ -21,6 +21,7 @@
                 'write_reason' => 'Please write your reason!',
                 'submit' => 'Submit',
                 'not_successfully' => 'Change status not successfully',
+                'address' => 'Address'
             ],
             'show' => [
                 'title' => 'Show detail order',
