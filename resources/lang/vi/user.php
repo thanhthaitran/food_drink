@@ -37,7 +37,7 @@
                 'phone' => 'Số điện thoại:',
                 'home_address' => 'Địa chỉ nhà:',
                 'shipping_address' => 'Địa chỉ giao hàng:',
-
+                'new_address' => 'Địa chỉ giao hàng mới: ',
             ]
         ]
     ];

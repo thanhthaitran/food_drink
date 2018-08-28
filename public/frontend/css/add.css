@@ -163,4 +163,14 @@ a.cancel-edit-order:hover {
   font-family: "Roboto", sans-serif; 
   margin: 5px 0; 
   border-radius: 5px;  
-} 
+}
+.new-address {
+  display: inline;
+  font-weight: bold;
+}
+.panel-title {
+  display: inline;
+}
+.edit-profile {
+  display: inline;
+}

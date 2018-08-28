@@ -150,7 +150,7 @@ class OrderController extends ApiController
      * Update the specified resource in storage.
      *
      * @param \App\Order                          $order   order
-     * @param App\Http\Requests\CreateNoteRequest $request request
+     * @param App\Http\Requests\Api\CreateOrderRequest $request request
      *
      * @return \Illuminate\Http\Response
     */
