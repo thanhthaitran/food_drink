@@ -35,7 +35,7 @@
                 <tr>
                   <th>@sortablelink('id', __('order.admin.index.id'))</th>
                   <th>@sortablelink('user.name', __('order.admin.index.name_user'))</th>
-                  <th>@sortablelink('user.email', __('order.admin.index.email_user'))</th>
+                  <th>{{ __('order.admin.index.address') }}</th>
                   <th>@sortablelink('total', __('order.admin.index.total'))</th>
                   <th>{{ __('order.admin.index.status') }}</th>
                   <th>@sortablelink('updated_at', __('order.admin.index.date'))</th>
@@ -45,7 +45,7 @@
                   <tr>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->user->name }}</td>
-                    <td>{{ $order->user->email }}</td>
+                    <td>{{ $order->address }}</td>
                     <td>{{ $order->total }} {{ __('order.admin.index.money') }}</td>
                     <td>
                       <select class="form-control status" name="status" data-id="{{ $order->id }}">

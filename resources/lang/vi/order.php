@@ -45,6 +45,7 @@
             ],
             'edit' => [
                 'title' => 'Chỉnh Sửa Đơn Hàng',
+                'cancel_edit' => 'Hủy chỉnh sửa',
             ]
         ],
     ];

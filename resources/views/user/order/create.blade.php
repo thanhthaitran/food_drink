@@ -76,6 +76,7 @@
 </section>
 @endsection
 @section('scripts')
-  <script type="text/javascript" src="{{ asset('js/user/viewCartOrder.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/user/showProfileUser.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/user/profileUserOrder.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/user/viewCartOrder.js') }}"></script>
 @endsection

@@ -23,29 +23,6 @@ function validation(cartProduct) {
   $('#form-validation').append(show);
 }
 
-function userInfo() {
-  $.ajax({
-    type: 'GET',
-    url: '/api/profile',
-    headers: { 'authorization': 'Bearer '+ localStorage.getItem('access_token') },
-    success: function (response){
-      var html = '';
-      var user = response.data.user;
-      response.data.user.shipping_addresses.forEach(shipping => {
-        var select = '';
-        if (shipping.is_default == 1) {
-          select = 'selected';
-        }
-        html += '<option value="'+ shipping.id +'" '+ select +'>'+ shipping.address +'</option>'
-      });
-      $('.form-control').html(html);
-      $('#name').text(user.name);
-      $('#email').text(user.email);
-      $('#home-address').text(user.user_info.address);
-      $('#phone').text(user.user_info.phone);
-    }
-  });
-}
 function itemCart(cartProduct) {
   var total = 0;
   var subTotal = 0;
@@ -107,7 +84,6 @@ function addOrder() {
         Authorization: 'Bearer ' +localStorage.getItem('access_token'),
       },
       data: {
-        total: $('.sub-total').attr('value'),
         address: address,
         shipping_id: shipping_id,
         product: order,
