@@ -11,6 +11,7 @@ use App\Mail\SendEmail;
 use App\Jobs\SendEmailJob;
 use App\Http\Requests\UpdateUsersRequest;
 use App\UserInfo;
+use App\ShippingAddress;
 use Session;
 
 class UsersController extends Controller
@@ -101,7 +102,7 @@ class UsersController extends Controller
     */
     public function edit(User $user)
     {
-        $user->load('userInfo');
+        $user->load('userInfo', 'shippingAddresses');
         return view('admin.user.edit')->with('user', $user);
     }
 
@@ -131,6 +132,16 @@ class UsersController extends Controller
                 'phone' => $request->phone,
             ]);
         }
+        foreach ($user->shippingAddresses as $shipping) {
+            if ($shipping->is_default == ShippingAddress::ADDRESS_DEFAULT) {
+                $user->shippingAddresses()->update([
+                    'is_default' => ShippingAddress::ADDRESS,
+                ]);
+            }
+        }
+        $user->shippingAddresses()->where('id', $request->shipping_id)->update([
+            'is_default' => ShippingAddress::ADDRESS_DEFAULT,
+        ]);
         flash(trans('user.admin.message.success_update'))->success();
         return redirect()->route('user.index');
     }
