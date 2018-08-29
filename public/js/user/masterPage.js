@@ -1,3 +1,24 @@
+function checkLogin() {
+  $.ajax({
+    type: 'GET',
+    url: '/api/checkAccessToken',
+    headers: ({
+      Accept: 'application/json',
+      Authorization: 'Bearer ' + accessToken,
+    }),
+    success: function (response){
+      $('.links .login').hide();
+    },
+    error: function () {
+      window.localStorage.removeItem('access_token');
+      localStorage.removeItem('data');
+      $('.links .myaccount').hide();
+      $('.links .logout').hide();
+      window.location.href = 'http://' + window.location.hostname + '/';
+    }
+  });
+}
+
 $( document ).ready(function() {
   accessToken = localStorage.getItem('access_token');
   if (accessToken) {
@@ -5,6 +26,7 @@ $( document ).ready(function() {
     $('.links .register').hide();
     $('.please-login').hide();
     $('.actions .login').hide();
+    checkLogin();
   } else {
     $('.language-currency-wrapper .myaccount').hide();
     $('.cart_navigation .checkout-btn').hide();
