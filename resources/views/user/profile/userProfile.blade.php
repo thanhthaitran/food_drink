@@ -17,9 +17,10 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-md-3 col-lg-3 " align="center"> <img id="user-avatar" alt="User Pic" src="{{ asset('images/products/default-product.jpg') }}" class="img-circle img-responsive"> </div>
-            <div class=" col-md-9 col-lg-9 "> 
+            <div class=" col-md-9 col-lg-9 ">
+              <p class="alert-info" hidden></p>
               <table class="table table-user-information">
-                <tbody>
+                <tbody class="info-user">
                   <tr>
                     <td>{{ __('user.user.profile.name') }}</td>
                     <td id="user-name"></td>
@@ -45,12 +46,37 @@
                   </tr>
                 </tbody>
               </table>
+              <div class="alert-danger" hidden></div>
             </div>
           </div>
         </div>
         <div class="panel-footer">
           <br>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="address-shipping" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" hidden>
+  <div class="modal-dialog note-cancel-order" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4>{{ __('user.user.shipping.write_address') }}</h4>
+      </div>
+      <div class="modal-body">
+        <form id="demo-form2" class="form-horizontal form-label-left">
+          <div class="form-group">
+            <div class="col-md-12 col-sm-6 col-xs-12">
+              <textarea rows="5" id="address" name="address" class="form-control col-md-7 col-xs-12"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+              <button type="submit" id="add-address-shipping" class="btn btn-success">{{ __('user.user.shipping.add') }}</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
