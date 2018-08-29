@@ -38,6 +38,7 @@ Route::group(['namespace' => 'Api'], function () {
         Route::put('profile', 'ProfileController@update');
         Route::put('orders/{order}/cancel', 'OrderController@cancel');
         Route::resource('shippings', 'ShippingAddressController');
+        Route::get('checkAccessToken', 'LoginController@checkAccessToken');
     });
     Route::get('products/{product}/posts', 'ProductController@getPosts');
     Route::post('register', 'RegisterController@register');    
