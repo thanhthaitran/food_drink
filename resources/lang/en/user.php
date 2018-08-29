@@ -79,6 +79,12 @@
                 'home_address' => 'Home address:',
                 'shipping_address' => 'Shipping address:',
                 'new_address' => 'New shipping address: ',
-            ]
+            ],
+            'shipping' => [
+                'write_address' => 'Write new your shipping address(*)',
+                'add' => 'Add',
+                'create_success' => 'Create new shipping address successfully',
+                'not_success' => 'Create new shipping address not successfully',
+            ],
         ]
     ];

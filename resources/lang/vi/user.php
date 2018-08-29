@@ -38,6 +38,10 @@
                 'home_address' => 'Địa chỉ nhà:',
                 'shipping_address' => 'Địa chỉ giao hàng:',
                 'new_address' => 'Địa chỉ giao hàng mới: ',
-            ]
+            ],
+            'shipping' => [
+                'write_address' => 'Viết địa chỉ giao hàng mới của bạn(*)',
+                'add' => 'Thêm',
+            ],
         ]
     ];

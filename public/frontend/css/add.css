@@ -174,3 +174,6 @@ a.cancel-edit-order:hover {
 .edit-profile {
   display: inline;
 }
+.panel-body .row .info-user tr td:first-child {
+  width: 16%;
+}

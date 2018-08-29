@@ -2,7 +2,7 @@
 if (!localStorage.getItem('access_token')) {
   window.location.href = 'http://' + window.location.hostname + '/';  
 }
-$( document ).ready(function() {
+function showProfileUser() {
   $.ajax({
     type: 'GET',
     url: '/api/profile',
@@ -27,9 +27,12 @@ $( document ).ready(function() {
       $('#user-address-shipping').html(html);
       add = '<div>\
               <p class="new-address">'+ Lang.get('user.user.profile.new_address') +'</p>\
-              <button class="btn btn-sm btn-success"><i class="fa fa-plus-square"></i></button>\
+              <button class="btn btn-sm btn-success address-shipping"><i class="fa fa-plus-square"></i></button>\
             </div>';
       $('#user-address-shipping').append(add);
     }
   });
+}
+$(document).ready(function() {
+  showProfileUser();
 });
