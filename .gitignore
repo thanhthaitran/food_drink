@@ -16,3 +16,4 @@ storage/debugbar/
 /public/bower_components
 .env.testing.local
 .env.test
+.DS_Store

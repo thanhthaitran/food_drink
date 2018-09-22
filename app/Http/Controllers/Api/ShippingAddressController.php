@@ -55,4 +55,29 @@ class ShippingAddressController extends ApiController
             return $this->errorResponse(trans('errors.delete_fail'), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \App\ShippingAddress                                $shipping ShippingAddress
+     * @param App\Http\Requests\Api\CreateShippingAddressRequests $request  request
+     *
+     * @return \Illuminate\Http\Response
+    */
+    public function update(ShippingAddress $shipping, CreateShippingAddressRequests $request)
+    {
+        try {
+            $user = Auth::user();
+            if ($user->id == $shipping->user_id) {
+                $shipping->update([
+                    'address'=> $request->address,
+                ]);
+                return $this->successResponse($shipping->load('user'), Response::HTTP_OK);
+            } else {
+                return $this->errorResponse(trans('errors.update_fail'), Response::HTTP_UNPROCESSABLE_ENTITY);
+            }
+        } catch (Exception $e) {
+            return $this->errorResponse(trans('errors.delete_fail'), Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+    }
 }
