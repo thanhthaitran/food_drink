@@ -2,6 +2,7 @@
 if (!localStorage.getItem('access_token')) {
   window.location.href = 'http://' + window.location.hostname + '/';  
 }
+const ADDRESS_DEFAULT = 1;
 function showProfileUser() {
   $.ajax({
     type: 'GET',
@@ -17,10 +18,15 @@ function showProfileUser() {
       $("#user-phone").html(response.data.user.user_info.phone);
       $("#user-email").html(response.data.user.email);
       shippingAddresses.forEach(shipping => {
+        var address_default = '';
+        if (shipping.is_default == ADDRESS_DEFAULT) {
+          address_default = '<span class="address-default">default</span>';
+        }
         html += '<div id="del'+ shipping.id +'">\
-                  <p>'+ shipping.address +'</p>\
-                  <button class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></button>\
+                  <p id="address'+ shipping.id +'">'+ shipping.address +'</p>\
+                  <button data-action="view" edit-id="'+ shipping.id +'" class="btn btn-sm btn-warning edit-address"><i class="glyphicon glyphicon-edit"></i></button>\
                   <button delete-id="'+ shipping.id +'" class="btn btn-sm btn-danger delete-address"><i class="glyphicon glyphicon-remove"></i></button>\
+                  '+ address_default +'\
                   <hr>\
                 </div>'
       });

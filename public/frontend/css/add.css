@@ -177,3 +177,14 @@ a.cancel-edit-order:hover {
 .panel-body .row .info-user tr td:first-child {
   width: 16%;
 }
+.address-default {
+  padding: 5px 10px 9px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #53f04e;
+  border-color: #53f04e;
+  font-variant: small-caps;
+  font-weight: bold;
+}

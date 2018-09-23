@@ -42,6 +42,10 @@
             'shipping' => [
                 'write_address' => 'Viết địa chỉ giao hàng mới của bạn(*)',
                 'add' => 'Thêm',
+                'create_success' => 'Tạo địa chỉ giao hàng mới thành công',
+                'create_not_success' => 'Tạo địa chỉ giao hàng mới không thành công',
+                'edit_success' => 'Sửa địa chỉ giao hàng mới thành công',
+                'edit_not_success' => 'Sửa địa chỉ giao hàng mới không thành công',
             ],
         ]
     ];

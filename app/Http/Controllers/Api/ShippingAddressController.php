@@ -77,7 +77,7 @@ class ShippingAddressController extends ApiController
                 return $this->errorResponse(trans('errors.update_fail'), Response::HTTP_UNPROCESSABLE_ENTITY);
             }
         } catch (Exception $e) {
-            return $this->errorResponse(trans('errors.delete_fail'), Response::HTTP_UNPROCESSABLE_ENTITY);
+            return $this->errorResponse(trans('errors.update_fail'), Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 }
