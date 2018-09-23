@@ -1,3 +1,4 @@
+// add address
 function addAddress() {
   var address = $('#address').val();
   $('.panel-body .alert-info').html('');
@@ -29,6 +30,7 @@ function addAddress() {
 }
 
 $(document).ready(function() {
+  // delete address
   $(document).on('click', '.delete-address', function(event) {
     event.preventDefault();
     var id = $(this).attr('delete-id');
@@ -43,6 +45,8 @@ $(document).ready(function() {
         },
         success: function (response){
           $('#del'+ id).hide();
+          $('.panel-body .alert-info').html('');          
+          $('.panel-body .alert-danger').html('');
         }
       });
     }

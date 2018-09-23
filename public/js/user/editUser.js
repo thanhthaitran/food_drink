@@ -12,7 +12,11 @@ function infoUser() {
       $('#phone').val(response.data.user.user_info.phone);
       $('.avatar-edit').attr('src',response.data.user.user_info.avatar_url);
       shippingAddresses.forEach(shipping => {
-        html += '<option>'+ shipping.address +'</option>'
+        var select = '';
+        if (shipping.is_default == 1) {
+          select = 'selected';
+        }
+        html += '<option value="'+ shipping.id +'" '+ select +'>'+ shipping.address +'</option>'
       });
       $('#address-shipping').html(html);
     }
@@ -47,8 +51,8 @@ function editUser() {
           $('#'+error + '_error' ).show();
         });
       }
-    })
-  })
+    });
+  });
 }
 $(document).ready(function () {
   infoUser();

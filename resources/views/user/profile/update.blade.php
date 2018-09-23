@@ -27,7 +27,7 @@
               <strong class="text-danger"></strong>
             </span>
             <label for="address">{{ __('profile.user.update.address_shipping') }}</label>
-              <select id="address-shipping" class="form-control" id="sel1">
+              <select id="address-shipping" name="shipping_id" class="form-control" id="sel1">
                 
               </select>
             <span id="address_shipping_error" class="help-block" hidden>
