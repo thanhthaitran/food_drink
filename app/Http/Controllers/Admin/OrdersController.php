@@ -10,6 +10,7 @@ use App\OrderDetail;
 use App\Note;
 use App\Mail\ChangeStatusOrderMail;
 use Auth;
+use DB;
 
 class OrdersController extends Controller
 {
@@ -44,7 +45,7 @@ class OrdersController extends Controller
     */
     public function show(Order $order)
     {
-        $order->load('orderDetails', 'user.userInfo');
+        $order->load('orderDetails', 'notes.user', 'trackingOrders');
         return view('admin.order.show', compact('order'));
     }
 
@@ -60,17 +61,16 @@ class OrdersController extends Controller
     {
         DB::beginTransaction();
         try {
+            $order->trackingOrders()->create([
+                'order_id' => $order->id,
+                'old_status' => $order->status,
+                'new_status' => $request->status,
+            ]);
             $order['status'] = $request->status;
             $order->save();
             $order->notes()->create([
                 'user_id' => Auth::id(),
                 'content' => $request->content,
-            ]);
-            $order->trackingOrders()->create([
-                'order_id' => $order->id,
-                'old_status' => $order->status,
-                'new_status' => $request->status,
-                'date_changed' => date("Y-m-d H:i:s"),
             ]);
             $data = ['name' => $order->user->name,
                 'status' => $request->status,
