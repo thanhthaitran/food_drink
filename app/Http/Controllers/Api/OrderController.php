@@ -72,7 +72,6 @@ class OrderController extends ApiController
                     'order_id' => $order->id,
                     'old_status' => $order->status,
                     'new_status' => Order::REJECTED,
-                    'date_changed' => date("Y-m-d H:i:s"),
                 ]);
                 $order->update([
                     'status' => Order::REJECTED,

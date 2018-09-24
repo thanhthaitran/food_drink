@@ -14,7 +14,6 @@
     @include('admin.layout.message')
     <!-- Main content -->
     <section class="content">
-      <div class="alert-danger" hidden></div>
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -33,26 +32,28 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>@sortablelink('id', __('order.admin.index.id'))</th>
-                  <th>@sortablelink('user.name', __('order.admin.index.name_user'))</th>
-                  <th>{{ __('order.admin.index.address') }}</th>
-                  <th>@sortablelink('total', __('order.admin.index.total'))</th>
-                  <th>{{ __('order.admin.index.status') }}</th>
-                  <th>@sortablelink('updated_at', __('order.admin.index.date'))</th>
-                  <th>{{ __('order.admin.index.action') }}</th>
+                  <th class="col-md-1">@sortablelink('id', __('order.admin.index.id'))</th>
+                  <th class="col-md-2">@sortablelink('user.name', __('order.admin.index.name_user'))</th>
+                  <th class="col-md-2">@sortablelink('total', __('order.admin.index.total'))</th>
+                  <th class="col-md-2">{{ __('order.admin.index.status') }}</th>
+                  <th class="col-md-2">@sortablelink('updated_at', __('order.admin.index.date'))</th>
+                  <th class="col-md-1">{{ __('order.admin.index.action') }}</th>
                 </tr>
                   @foreach ($orders as $order)
                   <tr>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->user->name }}</td>
-                    <td>{{ $order->address }}</td>
                     <td>{{ $order->total }} {{ __('order.admin.index.money') }}</td>
                     <td>
-                      <select class="form-control status" name="status" data-id="{{ $order->id }}">
-                        <option value="{{ App\Order::PENDING }}" {{ $order->status == App\Order::PENDING ? 'selected="selected"' : '' }}>{{ __('order.admin.index.pending') }}</option>
-                        <option value="{{ App\Order::ACCEPTED }}" {{ $order->status == App\Order::ACCEPTED ? 'selected="selected"' : '' }}>{{ __('order.admin.index.accepted') }}</option>
-                        <option value="{{ App\Order::REJECTED }}" {{ $order->status == App\Order::REJECTED ? 'selected="selected"' : '' }}>{{ __('order.admin.index.rejected') }}</option>
-                      </select>
+                      @if ($order->status == App\Order::PENDING)
+                        {{ __('order.admin.index.pending') }}
+                      @elseif ($order->status == App\Order::ACCEPTED)
+                        {{ __('order.admin.index.accepted') }}
+                      @elseif ($order->status == App\Order::REJECTED)
+                        {{ __('order.admin.index.rejected') }}
+                      @elseif ($order->status == App\Order::RECEIVED)
+                        {{ __('order.admin.index.received') }}
+                      @endif
                     </td>
                     <td>{{ $order->updated_at }}</td>
                     <td>

@@ -16,58 +16,47 @@
     </section>
     <!-- Main content -->
     <section class="content">
+    <div class="alert-info" hidden></div>
+    <div class="alert-danger" hidden></div>
       <div class="row">
         <!-- left column -->
         <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">{{__('order.admin.show.user_info')}}</h3>
+              <h3 class="box-title">{{__('order.admin.show.product_order')}}</h3>
             </div>
             <!-- /.box-header -->
-            <form method="POST" action="" enctype="">
-            <!-- {{method_field('PUT')}} -->
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="exampleInputName">{{__('order.admin.show.name')}}</label>
-                  <input type="text" class="form-control" disabled name="name" value="{{ $order->user->name }}">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail">{{__('order.admin.show.email')}}</label>
-                  <input type="email" class="form-control" disabled name="email" value="{{ $order->user->email }}">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputRole">{{__('order.admin.show.phone')}}</label>
-                  <input type="text" class="form-control" disabled name="phone" value="{{ $order->user->userInfo->phone }}">
-                </div>   
-                <div class="form-group">
-                  <label for="exampleInputRole">{{__('order.admin.show.address')}}</label>
-                  <input type="text" class="form-control" disabled name="address" value="{{ $order->user->userInfo->address }}">
-                </div> 
-              </div>
-            </form>
-            @if (count($order->notes))
-              <div class="box-header with-border list-product">
-                <h3 class="box-title">{{ __('order.admin.show.list_note') }}</h3>
-              </div>
-              <div class="box-body table-responsive no-padding">
-                <table class="table table-hover">
-                  <tr>
-                    <th>{{ __('order.admin.show.id') }}</th>
-                    <th>{{ __('order.admin.show.content') }}</th>
-                  </tr>
-                    @foreach ($order->notes as $note)
-                    <tr>
-                      <td>{{ $note->id }}</td>
-                      <td>{{ $note->content }}</td>
-                    </tr>
-                    @endforeach
-                </table>
-              </div>
-            @endif
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>{{__('order.admin.show.email')}}</th>
+                  <th>{{__('order.admin.show.address')}}</th>
+                  <th>{{__('order.admin.show.total')}}</th>
+                  <th>{{__('order.admin.show.status')}}</th>
+                  <th>{{__('order.admin.show.note')}}</th>
+                  <th>{{__('order.admin.show.tracking_orders')}}</th>
+                </tr>
+                <tr>
+                  <td>{{ $order->user->email }}</td>
+                  <td>{{ $order->address }}</td>
+                  <td>{{ $order->total }} &dollar;</td>
+                  <td>
+                    <select class="form-control status" name="status" data-id="{{ $order->id }}">
+                      <option value="{{ App\Order::PENDING }}" {{ $order->status == App\Order::PENDING ? 'selected="selected"' : '' }}>{{ __('order.admin.index.pending') }}</option>
+                      <option value="{{ App\Order::ACCEPTED }}" {{ $order->status == App\Order::ACCEPTED ? 'selected="selected"' : '' }}>{{ __('order.admin.index.accepted') }}</option>
+                      <option value="{{ App\Order::REJECTED }}" {{ $order->status == App\Order::REJECTED ? 'selected="selected"' : '' }}>{{ __('order.admin.index.rejected') }}</option>
+                      <option value="{{ App\Order::RECEIVED }}" {{ $order->status == App\Order::RECEIVED ? 'selected="selected"' : '' }}>{{ __('order.admin.index.received') }}</option>
+                    </select>
+                  </td>
+                  <td class="list-notes"><i class="fa fa-info"></i></td>
+                  <td class="tracking-orders"><i class="fa fa-info"></i></td>
+                </tr>
+              </table>
+            </div>
             <!-- form start -->
             <div class="box-header with-border list-product">
-              <h3 class="box-title">{{__('order.admin.show.list_product')}}</h3>
+              <!-- <h3 class="box-title">{{__('order.admin.show.list_product')}}</h3> -->
             </div>
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
@@ -88,6 +77,110 @@
                   </tr>
                   @endforeach
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- content note -->
+      <div class="modal fade" id="note-change-order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" hidden>
+        <div class="modal-dialog note-cancel-order" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <h4>{{ __('order.admin.index.write_reason') }}</h4>
+            </div>
+            <div class="modal-body">
+              <form id="demo-form2" class="form-horizontal form-label-left">
+                <div class="form-group">
+                  <div class="col-md-12 col-sm-6 col-xs-12">
+                    <textarea rows="5" id="note" name="note" class="form-control col-md-7 col-xs-12"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+                    <button type="submit" id="note-change-order-submit" class="btn btn-success">{{ __('order.admin.index.submit') }}</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- list notes -->
+      <div class="modal fade" id="list-note" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" hidden>
+        <div class="modal-dialog note-cancel-order" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <h4>{{ __('order.admin.show.list_note') }}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tr>
+                    <th>{{ __('order.admin.show.name') }}</th>
+                    <th>{{ __('order.admin.show.content') }}</th>
+                  </tr>
+                    @foreach ($order->notes as $note)
+                    <tr>
+                      <td>{{ $note->user->name }}</td>
+                      <td>{{ $note->content }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- show tracking orders -->
+      <div class="modal fade" id="list-tracking-order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" hidden>
+        <div class="modal-dialog note-cancel-order" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+              <h4>{{ __('order.admin.show.list_note') }}</h4>
+            </div>
+            <div class="modal-body">
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tr>
+                    <th>{{ __('order.admin.show.old_status') }}</th>
+                    <th>{{ __('order.admin.show.new_status') }}</th>
+                    <th>{{ __('order.admin.show.time') }}</th>
+                  </tr>
+                    @foreach ($order->trackingOrders as $trackingOrder)
+                    <tr>
+                      <td>
+                        @if ($trackingOrder->old_status == App\Order::PENDING)
+                          {{ __('order.admin.index.pending') }}
+                        @elseif ($trackingOrder->old_status == App\Order::ACCEPTED)
+                          {{ __('order.admin.index.accepted') }}
+                        @elseif ($trackingOrder->old_status == App\Order::REJECTED)
+                          {{ __('order.admin.index.rejected') }}
+                        @elseif ($trackingOrder->old_status == App\Order::RECEIVED)
+                          {{ __('order.admin.index.received') }}
+                        @endif
+                      </td>
+                      <td>
+                      @if ($trackingOrder->new_status == App\Order::PENDING)
+                          {{ __('order.admin.index.pending') }}
+                        @elseif ($trackingOrder->new_status == App\Order::ACCEPTED)
+                          {{ __('order.admin.index.accepted') }}
+                        @elseif ($trackingOrder->new_status == App\Order::REJECTED)
+                          {{ __('order.admin.index.rejected') }}
+                        @elseif ($trackingOrder->new_status == App\Order::RECEIVED)
+                          {{ __('order.admin.index.received') }}
+                        @endif
+                      </td>
+                      <td>{{ $trackingOrder->updated_at }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+              </div>
             </div>
           </div>
         </div>
