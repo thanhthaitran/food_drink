@@ -1,5 +1,3 @@
-var url = '/api/products';
-
 function appendHtml(response) {
   let html = '';
   response.data.data.forEach(element => {
@@ -80,6 +78,12 @@ function processAjax(url){
 }
 
 $(document).ready(function () {
+  var url = '/api/products';
+  if (window.location.search == "") {
+    url = url;
+  } else {
+    url = url + window.location.search;
+  }
   $(".filter-price").on("click", function () {
     from = $('#from').val();  
     to = $('#to').val();
@@ -124,7 +128,7 @@ $(document).ready(function () {
   });
   //refresh filter
   $('.block-subtitle').on('click', function() {
-    location.reload();
+    window.location.href = '/products';
   });
   processAjax(url);
   //next

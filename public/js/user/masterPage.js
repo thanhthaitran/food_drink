@@ -20,6 +20,12 @@ function checkLogin() {
 }
 
 $( document ).ready(function() {
+  $('#product-search').on('submit', function (event) {
+    event.preventDefault();
+    query = $('#product-search').find('input[name="name"]').val();
+    url =  "/products?name=" + query;
+    window.location.href = url;
+  });
   accessToken = localStorage.getItem('access_token');
   if (accessToken) {
     $('.links .login').hide();

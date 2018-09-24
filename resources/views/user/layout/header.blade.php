@@ -59,10 +59,10 @@
           @if ((!request()->is('user/login')) && (!request()->is('password/reset')) && (!request()->is('password/reset/*')))
           <div class="top-search">
             <div id="search">
-              <form>
+              <form id="product-search">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="{{ __('home.user.header.search') }}" name="search">
-                  <button class="btn-search" type="button"><i class="fa fa-search"></i></button>
+                  <input type="search" class="form-control" placeholder="{{ __('home.user.header.search') }}" name="name" required>
+                  <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
                 </div>
               </form>
             </div>
