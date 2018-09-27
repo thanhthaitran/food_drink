@@ -87,6 +87,8 @@
                 'create_not_success' => 'Create new shipping address not successfully!!!',
                 'edit_success' => 'Edit shipping address successfully!!!',
                 'edit_not_success' => 'Edit shipping address not successfully!!!',
+                'delete_success' => 'Delete shipping address successfully!!!',
+                'delete_not_success' => 'Delete shipping address not successfully!!!',
             ],
         ]
     ];

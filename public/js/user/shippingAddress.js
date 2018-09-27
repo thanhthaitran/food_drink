@@ -30,6 +30,8 @@ function addAddress() {
 }
 
 $(document).ready(function() {
+  $('.panel-body .alert-info').html('');          
+  $('.panel-body .alert-danger').html('');
   // edit address
   $(document).on('click', '.edit-address', function(event) {
     event.preventDefault();
@@ -92,8 +94,8 @@ $(document).ready(function() {
         },
         success: function (response){
           $('#del'+ id).hide();
-          $('.panel-body .alert-info').html('');          
-          $('.panel-body .alert-danger').html('');
+          $('.panel-body .alert-info').html(Lang.get('user.user.shipping.delete_success'));
+          $('.panel-body .alert-info').show();
         }
       });
     }
