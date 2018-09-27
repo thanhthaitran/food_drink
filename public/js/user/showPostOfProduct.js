@@ -86,7 +86,7 @@ function appendPost(response, typePost) {
             <div class="entry-excerpt" id="content-post">'+ post.content +'</div>\
             <div class="entry-meta-data">\
               <span class="date">\
-                <i class="fa fa-calendar" id="date-post">&nbsp;'+ moment(post.updated_at).fromNow() +'</i>\
+                <i class="fa fa-calendar" id="date-post">&nbsp;'+ post.diff_time +'</i>\
               </span>\
             </div>\
           </div>'
@@ -98,20 +98,22 @@ function delPost() {
   $(document).on('click', '.delete-post' ,function (event){    
     event.preventDefault();
     var postId = $(this).attr('id');
-    confirm("You really want to delete this?")
-    $.ajax({
-      url: url_delete + postId,
-      type: "DELETE",
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
-      },
-      success: function(data) {
-        $('#post-'+postId).remove();
-      },
-      error: function(data) {
-        alert(data.responseJSON.error);
-      }
-    })
+    msg = Lang.get('product.user.product.delete_confirm');
+    if (confirm(msg)) {
+      $.ajax({
+        url: url_delete + postId,
+        type: "DELETE",
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+        },
+        success: function(data) {
+          $('#post-'+postId).remove();
+        },
+        error: function(data) {
+          alert(data.responseJSON.error);
+        }
+      });
+    }
   })
 }
