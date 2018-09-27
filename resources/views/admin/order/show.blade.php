@@ -117,6 +117,7 @@
               <h4>{{ __('order.admin.show.list_note') }}</h4>
             </div>
             <div class="modal-body">
+              <p class="alert-info" hidden></p>
               <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                   <tr>
@@ -127,9 +128,9 @@
                     @foreach ($order->notes as $note)
                     <tr>
                       <td>{{ $note->user->name }}</td>
-                      <td>{{ $note->content }}</td>
+                      <td><p id="note{{ $note->id }}">{{ $note->content }}</p></td>
                       <td>
-                        <a href=""><i class="fa fa-edit"></i></a> |
+                        <a class="edit-note" data-action="view" edit-id="{{ $note->id }}"><i class="fa fa-edit"></i></a> |
                         <form method="POST" action="{{ route('note.destroy', ['note' => $note->id]) }}" class="form-trash" onsubmit="return confirmDelete()">
                           @csrf
                           {{ method_field('DELETE') }}
@@ -138,6 +139,7 @@
                       </td>
                     </tr>
                     @endforeach
+                    <p class="alert-danger" hidden></p>
                 </table>
               </div>
             </div>

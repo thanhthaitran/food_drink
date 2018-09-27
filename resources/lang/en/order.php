@@ -55,6 +55,8 @@
                 'new_status' => 'New Status',
                 'time' => 'Time',
                 'action' => 'Action',
+                'edit_success' => 'Edit note successfully!!!',
+                'edit_not_success' => 'Edit note not successfully!!!',
             ],
         ],
         'user' => [
