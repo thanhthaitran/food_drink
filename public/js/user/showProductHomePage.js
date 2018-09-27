@@ -4,7 +4,17 @@ var limitTop = 8;
 var limitCategory = 4;
 var rate = 0;
 
+function goToByScroll(id){
+  $('html,body').animate({
+    scrollTop: $("#category-"+id).offset().top}, 'slow');
+}
+
 $(document).ready(function () {
+  $(document).on('click', '.image-category', function(event) {
+    event.preventDefault();
+    goToByScroll($(this).attr("id"));
+  });
+
   //Top 8 New Product
   $.get('api/products?sort=created_at&order=desc&limit=' + limitTop, function(response){
     appendHtml('new-product', response);
@@ -25,6 +35,14 @@ $(document).ready(function () {
     getProductList('drink-product', 'view-more-drink', response);
   });
   viewMore('view-more-drink', 'drink-product');
+
+  //filter category
+  $(document).on('click', '.filter-category', function(event) {
+    event.preventDefault();
+    var id = $(this).attr('data-id');
+    url =  "/products?category=" + id;
+    window.location.href = url;
+  });
 });
 
 // next

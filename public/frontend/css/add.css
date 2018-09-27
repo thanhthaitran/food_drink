@@ -89,7 +89,8 @@
 .pagination-area a:last-child {
   float: right;
 }
-.cancel-order {
+.cancel-order,
+.image-category {
   cursor: pointer;
 }
 a.cancel-edit-order {

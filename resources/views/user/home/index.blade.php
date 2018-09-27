@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-6 col-sms-12">
-        <a href="#">
+        <a id="food" class="image-category">
           <div class="banner-box banner-box1"> 
             <img src="/frontend/images/banner_food.jpg" alt="">
             <div class="box-hover">
@@ -17,7 +17,7 @@
         </a>
       </div>
       <div class="col-sm-6 col-sms-12">
-        <a href="#">
+        <a id="drink" class="image-category">
           <div class="banner-box banner-box1"> 
             <img src="/frontend/images/drink.jpg" alt="">
             <div class="box-hover">
@@ -67,13 +67,13 @@
   </div>
 </div>
 <!-- food -->
-<div class="main-container col2-left-layout">
+<div class="main-container col2-left-layout" id="category-food">
   <div class="container">
     <div class="row">
       <div class="col-main col-sm-12 col-xs-12">
         <div class="shop-inner">
           <div class="page-title">
-            <h2><a href="">{{ __('home.user.main.food') }}</a></h2>
+            <h2><a href="/products" class="filter-category" data-id="1">{{ __('home.user.main.food') }}</a></h2>
           </div>
           <div class="product-grid-area">
             @include('user.home.listFood')
@@ -86,13 +86,13 @@
   </div>
 </div>
 <!-- drink -->
-<div class="main-container col2-left-layout">
+<div class="main-container col2-left-layout" id="category-drink">
   <div class="container">
     <div class="row">
       <div class="col-main col-sm-12 col-xs-12">
         <div class="shop-inner">
           <div class="page-title">
-            <h2><a href="">{{ __('home.user.main.drink') }}</a></h2>
+            <h2><a href="/products" class="filter-category" data-id="2">{{ __('home.user.main.drink') }}</a></h2>
           </div>
           <div class="product-grid-area">
             @include('user.home.listDrink')
