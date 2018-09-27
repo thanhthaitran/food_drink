@@ -24,6 +24,7 @@
                 'description' => 'Chi Tiết',
                 'availability' => 'Số Lượng',
                 'action' => 'Hoạt Động',
+                'delete_confirm' => 'Bạn có muốn xoá bài đăng này?',
             ],
             'detail' => [
                 'description' => 'Mô tả',

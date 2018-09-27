@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Post;
 use App\Category;
 use App\Traits\FilterTrait;
+use Carbon\Carbon;
 
 class ProductController extends ApiController
 {
@@ -76,6 +77,10 @@ class ProductController extends ApiController
                     return $query->where('type', '=', $request->type);
                 })
                 ->sortable()->paginate(config('define.number_page_posts_user'));
+        foreach ($posts as $post) {
+            $createdAt = $post->created_at;
+            $post['diff_time'] = $createdAt->diffForHumans(now());
+        }
         $posts->appends(request()->query());
         return $this->successResponse($posts, Response::HTTP_OK);
     }

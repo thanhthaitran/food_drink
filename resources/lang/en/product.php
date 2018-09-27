@@ -87,6 +87,7 @@
                 'description' => 'Description',
                 'availability' => 'Availability',
                 'action' => 'Action',
+                'delete_confirm' => 'Do you want delete this post?',
             ],
             'detail' => [
                 'description' => 'Description',

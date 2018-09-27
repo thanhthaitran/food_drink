@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Kyslik\ColumnSortable\Sortable;
 
 class Order extends Model
 {
-    use Sortable;
+    use Sortable, SoftDeletes;
     const ACCEPTED = 2, RECEIVED = 5;
     const PENDING = 1;
     const REJECTED = 3;
