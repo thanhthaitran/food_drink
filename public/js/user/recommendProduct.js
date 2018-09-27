@@ -16,9 +16,11 @@ function getListRecommendProducts(keyRecommend) {
                   stars += '<i class="fa fa-star-o"></i>';
                 }
               }
+                img = Lang.get('product.image_product_default');
                 img_url = 'https://image.ibb.co/dqd4QJ/default_product.jpg';
                 if(typeof element.images[0] !== 'undefined') {
-                    img_url = element.images[0].image_url;
+                  img = element.images[0].image;
+                  img_url = element.images[0].image_url;
                 }                
                 products += '<li class="item col-lg-3 col-md-3 col-sm-6 col-xs-6">\
                 <div class="product-item">\
@@ -31,6 +33,7 @@ function getListRecommendProducts(keyRecommend) {
                             <img class="hover-img" src="'+img_url+'" alt="">\
                           </figure>\
                         </a>\
+                        <button type="button" class="add-to-cart-mt"  onclick="addCart('+ element.id +', \''+element.name +'\', \''+element.price +'\', '+element.quantity +', \''+ img_url +'\',\''+ img +'\')"> <i class="fa fa-shopping-cart"></i><span>'+ Lang.get('home.user.main.add_to_cart') +'</span> </button>\
                       </div>\
                     </div>\
                     <div class="item-info">\
