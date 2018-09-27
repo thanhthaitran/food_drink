@@ -54,6 +54,7 @@
                 'old_status' => 'Old Status',
                 'new_status' => 'New Status',
                 'time' => 'Time',
+                'action' => 'Action',
             ],
         ],
         'user' => [

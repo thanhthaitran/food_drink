@@ -37,6 +37,8 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware' => 'admin'],fu
         'index', 'show'
     ]);
     Route::put('order/{order}/updateStatus', 'OrdersController@updateStatus');
+    Route::resource('note', 'NotesController');
+    Route::resource('trackingOrder', 'TrackingOrdersController');
 });
 Route::group(['prefix' => 'admin'],function (){
     Route::get('login', [

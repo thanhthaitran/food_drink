@@ -53,6 +53,7 @@ $(document).ready(function () {
       success: function(response) {
         $('.content .alert-info').html(Lang.get('order.admin.show.change_status_success'));
         $('.content .alert-info').show();
+        location.reload();
       },
       error: function(response) {
         errorMessage = Lang.get('order.admin.index.not_successfully') +'<br/>'+ response.responseJSON.message +'<br/>';

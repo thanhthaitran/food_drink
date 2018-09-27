@@ -122,11 +122,20 @@
                   <tr>
                     <th>{{ __('order.admin.show.name') }}</th>
                     <th>{{ __('order.admin.show.content') }}</th>
+                    <th>{{ __('order.admin.show.action') }}</th>
                   </tr>
                     @foreach ($order->notes as $note)
                     <tr>
                       <td>{{ $note->user->name }}</td>
                       <td>{{ $note->content }}</td>
+                      <td>
+                        <a href=""><i class="fa fa-edit"></i></a> |
+                        <form method="POST" action="{{ route('note.destroy', ['note' => $note->id]) }}" class="form-trash" onsubmit="return confirmDelete()">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                          <button type="submit" class="but-trash"><i class="fa fa-trash"></i></button>
+                        </form>
+                      </td>
                     </tr>
                     @endforeach
                 </table>
@@ -151,6 +160,7 @@
                     <th>{{ __('order.admin.show.old_status') }}</th>
                     <th>{{ __('order.admin.show.new_status') }}</th>
                     <th>{{ __('order.admin.show.time') }}</th>
+                    <th>{{ __('order.admin.show.action') }}</th>
                   </tr>
                     @foreach ($order->trackingOrders as $trackingOrder)
                     <tr>
@@ -177,6 +187,13 @@
                         @endif
                       </td>
                       <td>{{ $trackingOrder->updated_at }}</td>
+                      <td>
+                        <form method="POST" action="{{ route('trackingOrder.destroy', ['trackingOrder' => $trackingOrder->id]) }}" class="form-trash" onsubmit="return confirmDelete()">
+                          @csrf
+                          {{ method_field('DELETE') }}
+                          <button type="submit" class="but-trash"><i class="fa fa-trash"></i></button>
+                        </form>
+                      </td>
                     </tr>
                     @endforeach
                 </table>
