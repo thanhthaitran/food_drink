@@ -27,9 +27,6 @@ function itemCart(cartProduct) {
   var subTotal = 0;
   var html = '';
   $.each(cartProduct, function(index, value) {
-    // if (cartProduct[index]['count'] > cartProduct[index]['quantity']) {
-    //   window.history.go(-1);
-    // }
     total = value.count * value.price;
     subTotal += total;
     html += '<tr>\
@@ -80,8 +77,8 @@ function addOrder() {
             }
         });
     }
-    })
-  })
+    });
+  });
 }
 
 $(document).ready(function() {

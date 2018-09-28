@@ -118,8 +118,8 @@ class OrderController extends ApiController
             ]);
         }
         foreach ($request->product as $product) {
-            $product = Product::find($product['id']);
-            $total += $product['quantity'] * $product->price;
+            $productO = Product::find($product['id']);
+            $total += $product['quantity'] * $productO->price;
         }
         $order = Order::create([
             'user_id' => $user->id,
@@ -128,18 +128,18 @@ class OrderController extends ApiController
             'address' => $request->address,
         ]);
         foreach ($request->product as $product) {
-            $product = Product::find($product['id']);
+            $productO = Product::find($product['id']);
             $image = 'default-product.jpg';
-            if ($product->images->first()) {
-                $image = $product->images->first()->image;
+            if ($productO->images->first()) {
+                $image = $productO->images->first()->image;
             }
             OrderDetail::create([
                 'order_id' => $order->id,
-                'product_id' => $product->id,
-                'quantity' => $product->quantity,
-                'price' => $product->price,
-                'name_product' => $product->name,
-                'image' => $image
+                'product_id' => $product['id'],
+                'quantity' => $product['quantity'],
+                'price' => $productO->price,
+                'name_product' => $productO->name,
+                'image' => $image,
             ]);
         }
         return $this->successResponse(['order' => $order->load('orderDetails'), 'user' => $user->load('shippingAddresses')], Response::HTTP_CREATED);
