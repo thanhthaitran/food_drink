@@ -74,7 +74,7 @@ function changeQuantity(id, quantity, index) {
     } else {
       var greater = Lang.get('cart.not_exceed') + quantity + Lang.get('cart.close')
       alert(greater);
-      location.reload();
+      // location.reload();
     }
   });
 }

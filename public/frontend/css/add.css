@@ -126,10 +126,10 @@ a.cancel-edit-order:hover {
   float: left;
 }
 .container .row .header-left {
-  width: 40%;
+  width: 50%;
 }
 .container .row .header-right {
-  width: 60%;
+  width: 50%;
 }
 .add-order {
   padding: 8px 10px !important;
@@ -188,4 +188,9 @@ a.cancel-edit-order:hover {
   border-color: #53f04e;
   font-variant: small-caps;
   font-weight: bold;
+}
+
+.mega-menu-title h3 {
+  text-align: center;
+  padding: 19px 0px 11px !important;
 }

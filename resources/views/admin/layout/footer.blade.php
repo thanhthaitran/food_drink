@@ -33,6 +33,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/bower_components/admin-lte/dist/js/demo.js"></script>
 <!-- ckeditor -->
-<script src="/bower_components/ckeditor/ckeditor.js"></script>
+{{-- <script src="/bower_components/ckeditor/ckeditor.js"></script> --}}
 </body>
 </html>

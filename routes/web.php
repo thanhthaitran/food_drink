@@ -11,6 +11,8 @@
 |
 */
 
+// App::setLocale('vi');
+
 Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware' => 'admin'],function () {
     Route::get('',[
         'uses'=>'HomeController@index',

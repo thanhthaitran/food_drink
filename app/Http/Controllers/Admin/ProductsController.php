@@ -110,7 +110,7 @@ class ProductsController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         DB::beginTransaction();
-        try {
+        try { 
             $arrIdImage = preg_split("/[,]/", $request->delImg);
             $product->update($request->all());
             if ($request->hasFile('images')) {

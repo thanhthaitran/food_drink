@@ -20,6 +20,8 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "bower": "^1.8.4"
+        "admin-lte": "^2.4.10",
+        "bower": "^1.8.8",
+        "latest-version": "^5.0.0"
     }
 }

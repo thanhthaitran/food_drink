@@ -106,7 +106,7 @@
             </div>
           </div>
           
-          <div class="shop-inner">
+          {{-- <div class="shop-inner">
             <div class="page-title">
               <h2>{{ __('product.user.recommend.related_products') }}</h2>
             </div>
@@ -116,7 +116,7 @@
               </ul>
             </div>
             <div class="home-inline"></div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>

@@ -40,7 +40,7 @@ function appendHtml(response) {
                         <div class="item-content">\
                           <div class="rating">'+ stars +'<span>('+ element.avg_rate +')</span></div>\
                         <div class="item-price">\
-                          <div class="price-box"> <span class="regular-price"> <span class="price">'+element.price+'</span> </span> </div>\
+                          <div class="price-box"> <span class="regular-price"> <span class="price">'+ Lang.get('home.user.main.money') +element.price+'</span> </span> </div>\
                         </div>\
                       </div>\
                     </div>\
