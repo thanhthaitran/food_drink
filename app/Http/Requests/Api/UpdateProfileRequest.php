@@ -34,7 +34,7 @@ class UpdateProfileRequest extends FormRequest
             'name' => 'required|string|max:50',
             'password' => 'min:6|max:50',
             'address' => 'string|max:255',
-            'phone' => 'required|min:10|numeric',
+            'phone' => 'required|numeric|min:10',
             'avatar' => 'image|mimes:png,jpg,jpeg',
             'shipping_id' => ($this->shipping_id == null) ? '' : 'in:'. implode(',', $arrayIdShipping),
         ];

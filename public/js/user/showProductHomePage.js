@@ -16,12 +16,12 @@ $(document).ready(function () {
   });
 
   //Top 8 New Product
-  $.get('api/products?sort=created_at&order=desc&limit=' + limitTop, function(response){
+  $.get('api/products?sort=created_at&direction=desc&limit=' + limitTop, function(response){
     appendHtml('new-product', response);
   });
 
   //Top 8 Rate Product
-  $.get('api/products?sort=avg_rate&order=desc&limit=' + limitTop, function(response){
+  $.get('api/products?sort=avg_rate&direction=desc&limit=' + limitTop, function(response){
     appendHtml('rate-product', response);
   });
   //show product by category food
@@ -71,6 +71,7 @@ function getProductList(id, idNext, response) {
 //append Html
 function appendHtml(id, response) {
   var html = '';
+  var avg_rate = 0;
   response.data.data.forEach(element => {
     var stars = '';
     img = Lang.get('product.image_product_default');
@@ -79,7 +80,10 @@ function appendHtml(id, response) {
       img = element.images[0].image;
       img_url = element.images[0].image_url;
     }
-    rate = Math.round(element.avg_rate);
+    if (element.avg_rate != null) {
+      avg_rate = element.avg_rate;
+    }
+    rate = Math.round(avg_rate);
     for (i = 1; i <= 5 ; i++) {
       if (i <= rate) {
         stars += '<i class="fa fa-star"></i>';
@@ -103,7 +107,7 @@ function appendHtml(id, response) {
                       <div class="item-content">\
                       <div class="rating">' 
                       + stars +
-                      '<span>('+ element.avg_rate +')</span>\
+                      '<span>('+ avg_rate +')</span>\
                       </div>\
                         <div class="item-price">\
                           <div class="price-box"> <span class="regular-price"> <span class="price">'+ Lang.get('home.user.main.money') + element.price +'</span> </span> </div>\

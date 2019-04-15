@@ -9,7 +9,7 @@
       <div class="col-sm-6 col-sms-12">
         <a id="food" class="image-category">
           <div class="banner-box banner-box1"> 
-            <img src="/frontend/images/banner_food.jpg" alt="">
+            <img src="/frontend/images/banner_fast_food.jpg" alt="">
             <div class="box-hover">
               <div class="banner-title">{{ __('home.user.main.food') }}</div>
             </div>
@@ -19,7 +19,7 @@
       <div class="col-sm-6 col-sms-12">
         <a id="drink" class="image-category">
           <div class="banner-box banner-box1"> 
-            <img src="/frontend/images/drink.jpg" alt="">
+            <img src="/frontend/images/banner_drink.jpg" alt="">
             <div class="box-hover">
               <div class="banner-title">{{ __('home.user.main.drink') }}</div>
             </div>

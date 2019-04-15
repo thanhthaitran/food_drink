@@ -10,17 +10,17 @@
           <p class="before-login-text">{{__('login.user.welcome')}}</p>
           <form class="login-form" accept-charset="UTF-8"id="login-form" >
             <label for="session_email">{{__('login.user.email')}}</label>
-            <input class="form-control" type="email" name="" id="session_email" />
+            <input class="form-control" type="email" name="" id="session_email" required />
             <label for="session_password">{{__('login.user.password')}}</label>
-            <input class="form-control" type="password" name="" id="session_password" />
+            <input class="form-control" type="password" name="" id="session_password" required />
             <span class="help-block">
               <strong class="text-danger" id="login-error"></strong>
             </span>
-            <label class=" inline" for="session_remember_me">
+            {{-- <label class=" inline" for="session_remember_me">
               <a href="{{route('password.forgot')}}"><span>{{__('forgot-password.forgot_password?')}}</span></a>
-            </label>
+            </label> --}}
             <input type="submit" name="commit" value="{{ __('login.user.login') }}" class="button" data-disable-with="Log in" />
-            <a href="{{ route('redirect.social', ['social' => 'facebook']) }}">{{ __('login.user.login_fb') }}</a>
+            {{-- <a href="{{ route('redirect.social', ['social' => 'facebook']) }}">{{ __('login.user.login_fb') }}</a> --}}
             <p class="forgot-pass">
               <a href="#">{{__('login.user.register')}}</a>
             </p>

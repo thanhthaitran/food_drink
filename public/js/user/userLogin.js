@@ -15,7 +15,7 @@ $( document ).ready(function() {
                 window.location.href = 'http://' + window.location.hostname + '/';
             },
             error: function (data) {
-                document.getElementById("login-error").innerHTML = data.responseJSON.error;
+                document.getElementById("login-error").innerHTML = "The email or password is incorrect";
             }
         });
     });

@@ -4,9 +4,13 @@ var n = 0;
 var recommend = [];
 
 function appendHtml(response) {
+  var avg_rate = 0;
+  if (response.data.avg_rate != null) {
+    avg_rate = response.data.avg_rate;
+  }
   item = {
     category: response.data.category_id,
-    rate: response.data.avg_rate,
+    rate: avg_rate,
   };
   recommend.push(item);
   localStorage.setItem('recommend', JSON.stringify(recommend));
@@ -15,7 +19,8 @@ function appendHtml(response) {
   if (typeof response.data.images[0] !== 'undefined') {
     img_url = response.data.images[0].image_url;
   }
-  var rate = Math.round(response.data.avg_rate);
+  rate = Math.round(avg_rate);
+  var rate = Math.round(avg_rate);
   for (i = 1; i <= 5 ; i++) {
     if (i <= rate) {
       rateStar += '<i class="fa fa-star"></i>';
@@ -36,8 +41,9 @@ function appendHtml(response) {
                     <p class="special-price"><span class="price">'+Lang.get('product.user.money') + response.data.price+' </span> </p>\
                   </div>\
                   <div class="ratings">\
-                    <div class="rating">\
-                      '+rateStar+'\
+                    <div class="rating">'
+                      + rateStar +
+                      '<span>('+ avg_rate +')</span>\
                     </div>\
                     <p class="rating-links"> <span class="separator">'+ Lang.get('product.user.product.rate') +'</span> </p>\
                   </div>\

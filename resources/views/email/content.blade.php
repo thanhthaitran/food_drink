@@ -8,9 +8,15 @@
 </head>
 <body>
     <div>
-        <h1>Welcome To The Website Food-Drink</h1>
-        <p>Hello {{$name}}<p>
+        <h1>Welcome To The Website Fast Foods & Drinks</h1>
+        <p>Hello <b>{{$name}}</b><p>
         <p>Your email: {{$email}}</p>
+        <p>Your password: {{$password}}</i></p>
+        <p>Your address: {{$address}}</p>
+        <p>Your phone: {{$phone}}</p>
+        <p>You recently had Fast Foods & Drinks account by Admin created. You need change password for it .</p> 
+        <p>Thanks,</p>
+        <p>ThaiAdmin</p>
     </div>
 </body>
 </html>

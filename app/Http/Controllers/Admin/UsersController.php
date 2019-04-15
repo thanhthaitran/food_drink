@@ -87,7 +87,7 @@ class UsersController extends Controller
                 'phone' => $request->phone,
             ]);
         }
-        $job = (new SendEmailJob($data));
+        $job = (new SendEmailJob($data, $request->password));
         dispatch($job);
         flash(trans('user.admin.message.success_create'))->success();
         return redirect()->route('user.index');

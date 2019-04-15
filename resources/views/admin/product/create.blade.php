@@ -30,7 +30,7 @@
             @csrf
               <div class="box-body">
                 <div class="form-group">
-                  <label>{{__('product.admin.create.name')}}</label>
+                  <label>{{__('product.admin.create.name')}}<span class="text-danger"> *</span></label>
                   <input type="text" class="form-control" name="name" placeholder="{{__('product.admin.create.enter_name')}}">
                   @if($errors->first('name')) 
                     <span class="help-block">
@@ -39,7 +39,7 @@
                   @endif
                 </div>
                 <div class="form-group">
-                  <label>{{__('product.admin.create.price')}}</label>
+                  <label>{{__('product.admin.create.price')}}<span class="text-danger"> *</span></label>
                   <input type="number" step="any" class="form-control" name="price" placeholder="{{__('product.admin.create.enter_price')}}">
                   @if($errors->first('price')) 
                     <span class="help-block">
@@ -48,7 +48,7 @@
                   @endif
                 </div>
                 <div class="form-group">
-                  <label>{{__('product.admin.create.quantity')}}</label>
+                  <label>{{__('product.admin.create.quantity')}}<span class="text-danger"> *</span></label>
                   <input type="number" class="form-control" name="quantity" placeholder="{{__('product.admin.create.enter_quantity')}}">
                   @if($errors->first('quantity')) 
                     <span class="help-block">
@@ -57,7 +57,7 @@
                   @endif
                 </div>
 								<div class="form-group">
-                  <label>{{__('product.admin.create.category')}}</label>
+                  <label>{{__('product.admin.create.category')}}<span class="text-danger"> *</span></label>
                   <select class="form-control" name="category_id">
                     @include('admin.product.createCategory')
                   </select>
@@ -68,7 +68,7 @@
                   @endif
                 </div>
                 <div class="form-group">
-                  <label>{{__('product.admin.create.preview')}}</label>
+                  <label>{{__('product.admin.create.preview')}}<span class="text-danger"> *</span></label>
                   <textarea class="form-control" name="preview" rows="3" placeholder="{{__('product.admin.create.preview')}}"></textarea>
                   @if($errors->first('preview')) 
                     <span class="help-block">
@@ -77,7 +77,7 @@
                   @endif
                 </div>
 								<div class="form-group">
-                  <label>{{__('product.admin.create.description')}}</label>
+                  <label>{{__('product.admin.create.description')}}<span class="text-danger"> *</span></label>
                   <textarea class="form-control" name="description" id="description" rows="3" placeholder="{{__('product.admin.create.description')}}"></textarea>
                   @if($errors->first('description')) 
                     <span class="help-block">
@@ -86,7 +86,7 @@
                   @endif
                 </div>
                 <div class="form-group">
-                  <label>{{__('product.admin.create.image')}}</label>
+                  <label>{{__('product.admin.create.image')}}<span class="text-danger"> *</span></label>
                   <input type="file" multiple name="images[]">
                   @if($errors->first('images')) 
                     <span class="help-block">

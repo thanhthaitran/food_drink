@@ -7,11 +7,11 @@ var url_delete = '/api/posts/';
 
 $(document).ready(function () {
   // show review
-  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=updated_at&order=desc', TYPE_REVIEW);
+  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=updated_at&direction=desc', TYPE_REVIEW);
   next(TYPE_REVIEW);
   prev(TYPE_REVIEW);
   // show comment
-  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=updated_at&order=desc', TYPE_COMMENT);
+  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=updated_at&direction=desc', TYPE_COMMENT);
   next(TYPE_COMMENT);
   prev(TYPE_COMMENT);
   //delete post

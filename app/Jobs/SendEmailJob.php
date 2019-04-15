@@ -15,6 +15,7 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $user;
+    public $password;
 
     /**
      * Create a new job instance.
@@ -23,9 +24,10 @@ class SendEmailJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $password)
     {
         $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -35,6 +37,6 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        \Mail::to($this->user->email)->send(new SendEmail($this->user));
+        \Mail::to($this->user->email)->send(new SendEmail($this->user, $this->password));
     }
 }

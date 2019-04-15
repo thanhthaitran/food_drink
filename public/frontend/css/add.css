@@ -194,3 +194,7 @@ a.cancel-edit-order:hover {
   text-align: center;
   padding: 19px 0px 11px !important;
 }
+.col-sm-6 .banner-box img {
+  width: 585px;
+  height: 228px;
+}
