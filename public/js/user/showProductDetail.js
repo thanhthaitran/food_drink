@@ -28,43 +28,39 @@ function appendHtml(response) {
       rateStar += '<i class="fa fa-star-o"></i>';
     }
   }
-  var html = '<div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">\
-                <div class="large-image">\
-                    <img class="zoom-img" src="'+ img_url +'" alt="products"> \
+
+  var html = '<div class="col-xs-12 col-sm-7 col-lg-7 col-md-7 product-details-area">\
+                <div class="product-name">\
+                  <h1>'+response.data.name+'</h1>\
                 </div>\
-              </div>\
-              <div class="col-xs-12 col-sm-7 col-lg-7 col-md-7 product-details-area">\
-                  <div class="product-name">\
-                    <h1>'+response.data.name+'</h1>\
+                <div class="price-box">\
+                  <p class="special-price"><span class="price">'+Lang.get('product.user.money') + response.data.price+' </span> </p>\
+                </div>\
+                <div class="ratings">\
+                  <div class="rating">'
+                    + rateStar +
+                    '<span>('+ avg_rate +')</span>\
                   </div>\
-                  <div class="price-box">\
-                    <p class="special-price"><span class="price">'+Lang.get('product.user.money') + response.data.price+' </span> </p>\
-                  </div>\
-                  <div class="ratings">\
-                    <div class="rating">'
-                      + rateStar +
-                      '<span>('+ avg_rate +')</span>\
+                  <p class="rating-links"> <span class="separator">'+ Lang.get('product.user.product.rate') +'</span> </p>\
+                </div>\
+                <div class="short-description">\
+                  <h2>'+ Lang.get('product.user.product.quick_view') +'</h2>\
+                  <p>'+response.data.preview+'</p>\
+                </div>\
+                <div class="product-variation">\
+                  <form action="#" method="post">\
+                    <div class="cart-plus-minus">\
+                      <label for="qty">'+Lang.get('product.user.product.quantity')+'</label>\
+                      <div class="numbers-row">\
+                      <input type="number" class="qty" title="Qty" value="1" id="qty" name="qty" min="1" max="'+response.data.quantity+'">\
                     </div>\
-                    <p class="rating-links"> <span class="separator">'+ Lang.get('product.user.product.rate') +'</span> </p>\
-                  </div>\
-                  <div class="short-description">\
-                    <h2>'+ Lang.get('product.user.product.quick_view') +'</h2>\
-                    <p>'+response.data.preview+'</p>\
-                  </div>\
-                  <div class="product-variation">\
-                    <form action="#" method="post">\
-                      <div class="cart-plus-minus">\
-                        <label for="qty">'+Lang.get('product.user.product.quantity')+'</label>\
-                        <div class="numbers-row">\
-                        <input type="number" class="qty" title="Qty" value="1" id="qty" name="qty" min="1" max="'+response.data.quantity+'">\
-                      </div>\
-                      <button class="button pro-add-to-cart" onclick="addCart('+ response.data.id +', \''+response.data.name +'\', \''+response.data.price +'\', '+response.data.quantity +', \''+ img_url +'\')" type="button">\
-                        <span><i class="fa fa-shopping-cart"></i> '+ Lang.get('product.user.add_to_cart') +'</span>\
-                      </button>\
-                    </form>\
-                  </div>\
+                    <button class="button pro-add-to-cart" onclick="addCart('+ response.data.id +', \''+response.data.name +'\', \''+response.data.price +'\', '+response.data.quantity +', \''+ img_url +'\')" type="button">\
+                      <span><i class="fa fa-shopping-cart"></i> '+ Lang.get('product.user.add_to_cart') +'</span>\
+                    </button>\
+                  </form>\
+                </div>\
               </div>';
-  $('.product-view-area').html(html);
+  $('.product-view-area').append(html);
 }
 function appendDescription(response) {
   var html = '<div class="tab-pane fade in active" id="description">\
@@ -75,10 +71,11 @@ function appendDescription(response) {
   $('#description').html(html);
 }
 $(document).ready(function () {
-    $.get(url, function(response) {
-        appendHtml(response);
-        appendDescription(response);
-    })
+  $.get(url, function(response) {
+      appendHtml(response);
+      appendDescription(response);
+  });
+  viewCart();
 });
 function numberItem() {
   if (localStorage.count) {
@@ -115,4 +112,32 @@ function addCart(idProduct, nameProduct, priceProduct, quantityProduct, imgProdu
   }
   numberItem();
   localStorage.setItem('carts', JSON.stringify(cartProduct));  
+  viewCart();
+}
+
+function viewCart() {
+  if (typeof(Storage) !== 'undefined') {
+    if (localStorage.carts) {
+      cartProduct = JSON.parse(localStorage.carts);
+      var html = '';
+      var subTotal = 0;
+      var total = 0;
+      $.each(cartProduct, function(index, value) {
+        if (cartProduct[index]['count'] > cartProduct[index]['quantity']) {
+          $('.top-cart-content .quantity-stock').show();
+        }
+        total = value.count*value.price;
+        subTotal = subTotal + total;
+        html += '<li class="item">\
+                  <a href="products/'+ value.id +'" title="'+ value.name +'" class="product-image"><img src="'+ value.img_url +'" alt="'+ value.name +'" width="65"></a>\
+                  <div class="product-details">\
+                    <p class="product-name"><a href="products/'+ value.id +'">'+ value.name +'</a> </p>\
+                    <strong>'+ value.count +'</strong> x <span class="price">'+ Lang.get('product.user.money')+ value.price +'</span>\
+                  </div>\
+                </li>';
+      });
+      $('#cart-sidebar').html(html);
+      $('.top-subtotal .sub-total').text(subTotal);
+    }
+  }
 }

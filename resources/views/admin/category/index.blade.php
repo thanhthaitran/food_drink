@@ -37,9 +37,16 @@
                   <th>{{__('category.admin.index.parent')}}</th>
                   <th>{{__('category.admin.index.action')}}</th>
                 </tr>
+                <?php
+                  $index = -1;
+                ?>
                 @foreach($categories as $category)
+                <?php
+                  $index++;
+                  $nubmer = 10*($categories->currentPage() - 1 )
+                ?>
                 <tr>
-                  <td>{{ $category->id }}</td>
+                    <td>{{ $index + $nubmer + 1 }}</td>
                   <td>{{ $category->name }}</td> 
                   <td>
                   @foreach($category->parentCategories as $parentCategory)

@@ -12,8 +12,8 @@
         'checkout' => 'Checkout',
         'my_cart' => 'My Cart',
         'search' => 'Search',
-        'min_price' => 'Min price',
-        'max_price' => 'Max price',
+        'min_price' => 'Min',
+        'max_price' => 'Max',
         'refresh_filter' => 'Refresh filter',
         'name_product' => 'Name product'
     ];
