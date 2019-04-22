@@ -77,6 +77,8 @@ class OrdersController extends Controller
                 'pending' => $order::PENDING,
                 'accepted' => $order::ACCEPTED,
                 'rejected' => $order::REJECTED,
+                'received' => $order::RECEIVED,
+                'note' => $order->notes()->latest()->first(),
             ];
             \Mail::to($order->user->email)->send(new ChangeStatusOrderMail($data));
             DB::commit();

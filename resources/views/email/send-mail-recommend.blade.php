@@ -8,8 +8,8 @@
 </head>
 <body>
     <div>      
-        <h1>Welcome To The Website Food-Drink</h1>
-        <h3> {{$user->user->email}} </h3>
+        <h1>Welcome To The Website Fast Foods & Drinks</h1>
+        <h3> <b>{{$user->user->email}}</b> </h3>
         @foreach($products as $product)
             <div>
                 <ul>        

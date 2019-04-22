@@ -1,5 +1,6 @@
 function appendHtml(response) {
   let html = '';
+  var avg_rate = 0;
   response.data.data.forEach(element => {
     var stars = '';
     var rate = 0;
@@ -9,7 +10,10 @@ function appendHtml(response) {
       img = element.images[0].image;
       img_url = element.images[0].image_url;
     }
-    rate = Math.round(element.avg_rate);
+    if (element.avg_rate != null) {
+      avg_rate = element.avg_rate;
+    }
+    rate = Math.round(avg_rate);
     for (i = 1; i <= 5 ; i++) {
       if (i <= rate) {
         stars += '<i class="fa fa-star"></i>';
@@ -38,7 +42,7 @@ function appendHtml(response) {
                     <div class="info-inner">\
                       <div class="item-title"> <a title="Ipsums Dolors Untra" href="products/'+ element.id +'">'+element.name+'</a> </div>\
                         <div class="item-content">\
-                          <div class="rating">'+ stars +'<span>('+ element.avg_rate +')</span></div>\
+                          <div class="rating">'+ stars +'<span>('+ avg_rate +')</span></div>\
                         <div class="item-price">\
                           <div class="price-box"> <span class="regular-price"> <span class="price">'+ Lang.get('home.user.main.money') +element.price+'</span> </span> </div>\
                         </div>\

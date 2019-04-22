@@ -25,8 +25,9 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->user_name) {
-            $users = User::search($request->user_name)->with('userInfo');
+        $search = $request->search;
+        if ($search) {
+            $users = User::with('userInfo')->where('name', 'Like', "%$search%")->orWhere("email", 'Like', "%$search%");
         } else {
             $users = User::with('userInfo');
         }
@@ -87,7 +88,7 @@ class UsersController extends Controller
                 'phone' => $request->phone,
             ]);
         }
-        $job = (new SendEmailJob($data));
+        $job = (new SendEmailJob($data, $request->password));
         dispatch($job);
         flash(trans('user.admin.message.success_create'))->success();
         return redirect()->route('user.index');

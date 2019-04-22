@@ -48,8 +48,8 @@
             'main' => [
                 'new_product' => 'Top New Products',
                 'rate_product' => 'Top Rate Products',
-                'food' => 'Fast Foods',
-                'drink' => 'Drinks',
+                'food' => 'Fast Food',
+                'drink' => 'Drink',
                 'add_to_cart' => 'Add to Cart',
                 'money' => '$',
                 'view_more_food' => 'Get more products by categoty Fast Foods',

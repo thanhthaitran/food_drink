@@ -12,7 +12,11 @@ function showProfileUser() {
       var shippingAddresses = response.data.user.shipping_addresses;
       var html = '';
       var add = '';
-      $("#user-avatar").attr('src', response.data.user.user_info.avatar_url);
+      var avatar_url = '../images/users/default-user-avatar.png';
+      if (response.data.user.user_info.avatar != null) {
+        avatar_url = response.data.user.user_info.avatar_url;
+      }
+      $("#user-avatar").attr('src', avatar_url);
       $("#user-name").html(response.data.user.name);
       $("#user-address").html(response.data.user.user_info.address);
       $("#user-phone").html(response.data.user.user_info.phone);

@@ -39,9 +39,16 @@
                   <th class="col-md-2">@sortablelink('updated_at', __('order.admin.index.date'))</th>
                   <th class="col-md-1">{{ __('order.admin.index.action') }}</th>
                 </tr>
+                <?php
+                  $index = -1;
+                ?>
                   @foreach ($orders as $order)
+                <?php
+                  $index++;
+                  $nubmer = 10*($orders->currentPage() - 1 )
+                ?>
                   <tr>
-                    <td>{{ $order->id }}</td>
+                    <td>{{ $index + $nubmer + 1 }}</td>
                     <td>{{ $order->user->name }}</td>
                     <td>{{ $order->total }} {{ __('order.admin.index.money') }}</td>
                     <td>

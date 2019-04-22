@@ -27,7 +27,8 @@ class UpdateUsersRequest extends FormRequest
             'name'=>'required|string|max:50',
             'address'=>'string|max:255',
             'shipping_id' => 'required|integer|exists:shipping_addresses,id',
-            'phone'=>'required|string|min:9|max:50',
+            'address' => 'bail|required',
+            'phone'=>'required|numeric|min:10',
             'avatar'=>'image|mimes:png,jpg,jpeg,svg,gif|max:10240',
         ];
     }

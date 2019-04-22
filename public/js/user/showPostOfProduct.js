@@ -7,11 +7,11 @@ var url_delete = '/api/posts/';
 
 $(document).ready(function () {
   // show review
-  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=updated_at&order=desc', TYPE_REVIEW);
+  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=updated_at&direction=desc', TYPE_REVIEW);
   next(TYPE_REVIEW);
   prev(TYPE_REVIEW);
   // show comment
-  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=updated_at&order=desc', TYPE_COMMENT);
+  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=updated_at&direction=desc', TYPE_COMMENT);
   next(TYPE_COMMENT);
   prev(TYPE_COMMENT);
   //delete post
@@ -58,6 +58,7 @@ function getData(url, typePost) {
 
 function appendPost(response, typePost) {
   var html = '';
+  avatar_url = '../images/users/default-user-avatar.png';
   response.data.data.forEach(post => {
     var stars = '';
     if (post.type == TYPE_REVIEW) {
@@ -71,6 +72,9 @@ function appendPost(response, typePost) {
         }
       }
     }
+    if (post.user.user_info.avatar != null) {
+      avatar_url = post.user.user_info.avatar_url;
+    }
     var showAction = '';
     if (localStorage.getItem('access_token')) {
       if(data_user.id == post.user_id){
@@ -78,7 +82,7 @@ function appendPost(response, typePost) {
       }
     }
     html+='<div class="review-ratting" id="post-'+post.id+'">\
-            <img class="avatar-user-post" src="'+ post.user.user_info.avatar_url +'" >\
+            <img class="avatar-user-post" src="'+ avatar_url +'" >\
             <h5 id="user-name" class="entry-title display-inline">'+ post.user.name +'</h5>\
             '+ showAction +'\
             <div class="rating" id="rating-post">'+ stars +'\

@@ -27,7 +27,8 @@ class StoreUsers extends FormRequest
             'name' => 'bail|required|string|max:50',
             'email' => 'bail|required|unique:users|email',
             'password' => 'bail|required|min:6|max:50',
-            'phone' => 'bail|required|min:10|numeric',
+            'address' => 'bail|required',
+            'phone' => 'bail|required|numeric|min:10',
             'avatar' => 'image|mimes:png,jpg,jpeg',
         ];
     }
