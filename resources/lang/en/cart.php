@@ -13,9 +13,9 @@
         'checkout' => 'Proceed to checkout',
         'are_you_sure' => 'Are you sure remove this product?',
         'quantity_greater' => 'Quantity must be greater than zero.',
-        'not_exceed' => 'Do not exceed product quantity in stock (',
-        'close' => ').',
-        'number_product' => '(Number of products currently in stock: ',
+        'not_exceed' => 'Only ',
+        'close' => ' products remain.',
+        'number_product' => 'Only ',
         'please_login' => 'Please login to checkout',
         'quantity_stock' => 'Your cart has exceeded the quantity in stock',
         'login' => 'Login'
