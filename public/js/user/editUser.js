@@ -7,10 +7,14 @@ function infoUser() {
     success: function (response) {
       var shippingAddresses = response.data.user.shipping_addresses;
       var html = '';
+      var avatar_url = '../images/users/default-user-avatar.png';
+      if (response.data.user.user_info.avatar != null) {
+        avatar_url = response.data.user.user_info.avatar_url;
+      }
       $('#name').val(response.data.user.name);
       $('#address').val(response.data.user.user_info.address);
       $('#phone').val(response.data.user.user_info.phone);
-      $('.avatar-edit').attr('src',response.data.user.user_info.avatar_url);
+      $('.avatar-edit').attr('src',avatar_url);
       shippingAddresses.forEach(shipping => {
         var select = '';
         if (shipping.is_default == 1) {

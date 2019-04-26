@@ -6,9 +6,9 @@ ul.pagination-item:after,ul.pagination-item:before{
 ul.pagination-item{
     font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
     font-size:18px;
-    line-height:36px;
+    line-height:32px;
     display:table;
-    margin:0 auto;
+    margin:0 auto !important;
     padding:0;
     list-style:none;
     -webkit-user-select:none;

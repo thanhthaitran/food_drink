@@ -323,9 +323,7 @@ jQuery(function() {
             zIndex: h,
             backgroundImage: "url(cannotbe)",
             position: "absolute",
-            // width: g.c,
             width: g.c,
-            // height: g.d,
             height: g.d,
             left: a.offsetsl().left,
             top: a.offsetsl().top

@@ -60,18 +60,19 @@ function processAjax(url){
   $.get(url, function(response) {
     // var urlPage = '';
     // var urlItem = '';
-    if (response.data.next_page_url != null) {
-      $('#next').show();
-      $('#next').attr('href', response.data.next_page_url);
-    } else {
-      // $('#prev').hide();
-    }
-    if (response.data['prev_page_url'] != null) {
-      $('#prev').show();
-      $('#prev').attr('href', response.data['prev_page_url']);
-    } else {
-      // $('#next').hide();
-    }
+    // if (response.data.next_page_url != null) {
+    //   $('#next').show();
+    //   $('#next').attr('href', response.data.next_page_url);
+    // } else {
+    //   // $('#prev').hide();
+    // }
+    // if (response.data['prev_page_url'] != null) {
+    //   $('#prev').show();
+    //   $('#prev').attr('href', response.data['prev_page_url']);
+    // } else {
+    //   // $('#next').hide();
+    // }
+    
     pagination('pagination-demo', response, processAjax);
     
     // pagination(response, 'prev', 'next', 'pagination-demo');
@@ -144,15 +145,15 @@ $(document).ready(function () {
     window.location.href = '/products';
   });
   //next
-  $('#next').click(function (event) {
-    event.preventDefault();
-    url_next = $('#next').attr('href');
-    processAjax(url_next);
-  });
-  //prev
-  $('#prev').click(function (event) {
-    event.preventDefault();
-    url_prev = $('#prev').attr('href');
-    processAjax(url_prev);
-  });
+  // $('#next').click(function (event) {
+  //   event.preventDefault();
+  //   url_next = $('#next').attr('href');
+  //   processAjax(url_next);
+  // });
+  // //prev
+  // $('#prev').click(function (event) {
+  //   event.preventDefault();
+  //   url_prev = $('#prev').attr('href');
+  //   processAjax(url_prev);
+  // });
 });

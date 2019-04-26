@@ -30,7 +30,6 @@ class PostsController extends Controller
             $posts = Post::with('product', 'user')->sortable()->orderBy('created_at', 'desc')->paginate(Post::PAGINATE);
         }
         $status = Post::$listStatus;
-        // dd($posts);
         return view('admin.post.index', ['posts' => $posts, 'status' => $status]);
     }
     

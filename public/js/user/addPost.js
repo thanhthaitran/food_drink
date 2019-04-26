@@ -37,8 +37,7 @@ function submitPost(pathName, TYPE) {
         errors.forEach(error => {
           errorMessage += response.responseJSON.errors[error] + '<br/>';
         });
-      } 
-      else {
+      } else {
         errorMessage = Lang.get('product.user.detail.error_message.'+ errorCode);
       }
       $('.reviews-content-right .danger'+ TYPE).html(errorMessage);
