@@ -32,7 +32,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>@sortablelink('id', __('category.admin.index.id'))</th>
+                  <th>{{ __('common.stt') }}</th>
                   <th>@sortablelink('name', __('category.admin.index.name'))</th>
                   <th>{{__('category.admin.index.parent')}}</th>
                   <th>{{__('category.admin.index.action')}}</th>

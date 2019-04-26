@@ -1,0 +1,63 @@
+/*! * pagination-item v1.4.1 (https://github.com/nashaofu/pagination-item) * Copyright 2018 nashaofu * Licensed under MIT */
+ul.pagination-item:after,ul.pagination-item:before{
+    display:table;
+    content:' '
+}
+ul.pagination-item{
+    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size:18px;
+    line-height:32px;
+    display:table;
+    margin:0 auto !important;
+    padding:0;
+    list-style:none;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    color:#4caf50;
+}
+ul.pagination-item:after{
+    clear:both
+}
+ul.pagination-item>li{
+    float:left;
+    margin:0 2px;
+    padding:0
+}
+ul.pagination-item>li>a{
+    display:block;
+    margin:0;
+    padding:0 8px;
+    cursor:pointer;
+    text-align:center;
+    text-decoration:none;
+    color:#4caf50;
+    border:1px solid #0ff;
+    border-radius:4px;
+    background-color:#fff
+}
+ul.pagination-item>li>a:hover{
+    border:1px solid #08f
+}
+ul.pagination-item>li>span{
+    display:inline;
+    padding:7px 10px;
+    cursor:default;
+    text-align:center;
+    color:#4caf50
+}
+ul.pagination-item>li.active>a,ul.pagination-item>li.active>a:focus,ul.pagination-item>li.active>a:hover{
+    cursor:default;
+    color:#fff;
+    border:1px solid #4caf50;
+    outline:0;
+    background-color:#4caf50
+}
+ul.pagination-item>li.disabled>a,ul.pagination-item>li.disabled>a:focus,ul.pagination-item>li.disabled>a:hover{
+    cursor:not-allowed;
+    color:#999;
+    border:1px solid #ccc;
+    outline:0;
+    background-color:#fff
+}

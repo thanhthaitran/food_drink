@@ -31,7 +31,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>@sortablelink('id', __('user.admin.index.id'))</th>
+                  <th>{{ __('common.stt') }}</th>
                   <th>@sortablelink('name', __('user.admin.index.name'))</th>
                   <th>@sortablelink('email', __('user.admin.index.email'))</th>
                   <th>{{__('user.admin.index.phone')}}</th>

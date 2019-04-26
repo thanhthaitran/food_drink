@@ -79,7 +79,10 @@
             @include('user.home.listFood')
           </div>
           <div class="home-inline"></div>
-          <a id="view-more-food">{{ __('home.user.main.view_more_food') }}</a>
+          <ul id="pagination-home-food" class="pagination-item">
+
+          </ul>
+          {{-- <a id="view-more-food">{{ __('home.user.main.view_more_food') }}</a> --}}
         </div>
       </div>
     </div>
@@ -98,7 +101,10 @@
             @include('user.home.listDrink')
           </div>
           <div class="home-inline"></div>
-          <a id="view-more-drink">{{ __('home.user.main.view_more_food') }}</a>
+          <ul id="pagination-home-drink" class="pagination-item">
+
+          </ul>
+          {{-- <a id="view-more-drink">{{ __('home.user.main.view_more_food') }}</a> --}}
         </div>
       </div>
     </div>

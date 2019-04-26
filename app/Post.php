@@ -31,6 +31,7 @@ class Post extends Model
         'rate',
         'updated_at',
         'content',
+        'created_at'
     ];
 
     /**

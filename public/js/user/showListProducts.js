@@ -55,20 +55,27 @@ function appendHtml(response) {
           });
     $('#products').html(html);
 }
+
 function processAjax(url){
   $.get(url, function(response) {
-    if (response.data['next_page_url'] != null) {
-      $('#next').show();
-      $('#next').attr('href', response.data['next_page_url']);
-    } else {
-      $('#next').hide();
-    }
-    if (response.data['prev_page_url'] != null) {
-      $('#prev').show();
-      $('#prev').attr('href', response.data['prev_page_url']);
-    } else {
-      $('#prev').hide();
-    }
+    // var urlPage = '';
+    // var urlItem = '';
+    // if (response.data.next_page_url != null) {
+    //   $('#next').show();
+    //   $('#next').attr('href', response.data.next_page_url);
+    // } else {
+    //   // $('#prev').hide();
+    // }
+    // if (response.data['prev_page_url'] != null) {
+    //   $('#prev').show();
+    //   $('#prev').attr('href', response.data['prev_page_url']);
+    // } else {
+    //   // $('#next').hide();
+    // }
+    
+    pagination('pagination-demo', response, processAjax);
+    
+    // pagination(response, 'prev', 'next', 'pagination-demo');
     appendHtml(response);
   })
   .fail(function(response) {
@@ -88,6 +95,8 @@ $(document).ready(function () {
   } else {
     url = url + window.location.search;
   }
+  processAjax(url);
+  // filter product
   $(".filter-price").on("click", function () {
     from = $('#from').val();  
     to = $('#to').val();
@@ -99,6 +108,7 @@ $(document).ready(function () {
     }    
     processAjax(url);
   });
+  // filter rate
   $(".filter-rate").on("click", function (){
     rate = $(this).val();
     var url_rate = 'rate='+ rate;
@@ -117,7 +127,7 @@ $(document).ready(function () {
     } else {
       url += '?category='+ id;
     }
-    processAjax(url);
+    processAjax(url); 
   });
   // filter name product
   $('#filter-name').submit(function () {
@@ -128,23 +138,22 @@ $(document).ready(function () {
     } else {
       url += '?name='+ name;
     }
-    processAjax(url);
+    processAjax(url); 
   });
   //refresh filter
   $('.block-subtitle').on('click', function() {
     window.location.href = '/products';
   });
-  processAjax(url);
   //next
-  $('#next').click(function (event) {
-    event.preventDefault();
-    url_next = $('#next').attr('href');
-    processAjax(url_next);
-  });
-  //prev
-  $('#prev').click(function (event) {
-    event.preventDefault();
-    url_prev = $('#prev').attr('href');
-    processAjax(url_prev);
-  });
+  // $('#next').click(function (event) {
+  //   event.preventDefault();
+  //   url_next = $('#next').attr('href');
+  //   processAjax(url_next);
+  // });
+  // //prev
+  // $('#prev').click(function (event) {
+  //   event.preventDefault();
+  //   url_prev = $('#prev').attr('href');
+  //   processAjax(url_prev);
+  // });
 });
