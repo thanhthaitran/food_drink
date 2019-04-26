@@ -238,9 +238,7 @@ jQuery(function() {
         var n, l, d, u, c, m, p, f = A.extend({}, this.dsetting, i),
           h = f.zindex || this.T(a),
           g = {
-            c: 450,
-            // c: a.width(),
-            // d: '450px'
+            c: a.width(),
             d: a.height()
           },
           o = new o,

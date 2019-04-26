@@ -29,9 +29,9 @@ class OrdersController extends Controller
                 return $query->where('name', 'Like', "%$search%")
                             ->orWhere("email", 'Like', "%$search%");
             });
-            $orders = $orders->sortable()->orderBy('created_at', 'desc')->paginate(config('define.number_page_products'))->appends(['search' => $search]);
+            $orders = $orders->sortable()->paginate(config('define.number_page_products'))->appends(['search' => $search]);
         } else {
-            $orders = Order::with('user', 'notes')->sortable()->orderBy('created_at', 'desc')->paginate(config('define.number_page_products'));
+            $orders = Order::with('user', 'notes')->sortable()->paginate(config('define.number_page_products'));
         }
         return view('admin.order.index', compact('orders'));
     }
@@ -45,9 +45,8 @@ class OrdersController extends Controller
     */
     public function show(Order $order)
     {
-        $user = Auth::user();
         $order->load('orderDetails', 'notes.user', 'trackingOrders');
-        return view('admin.order.show', compact('order', 'user'));
+        return view('admin.order.show', compact('order'));
     }
 
     /**

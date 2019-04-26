@@ -25,7 +25,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/jquery-ui.css') }}">
 <!-- Revolution Slider CSS -->
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/revolution-slider.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/pagination.min.css') }}">
 <!-- style CSS -->
 <link rel="stylesheet" type="text/css"  href="{{ asset('frontend/css/style.css') }}" media="all">
 <!-- add CSS -->

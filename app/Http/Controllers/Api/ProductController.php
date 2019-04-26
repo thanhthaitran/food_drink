@@ -32,9 +32,6 @@ class ProductController extends ApiController
                         $query->where('price', '<=', $request->max_price);
                     })
                     ->when(isset($request->rate), function ($query) use ($request) {
-                        if ($request->rate == 1) {
-                            return $query->whereBetween('avg_rate', [round($request->rate)-1, round($request->rate)+0.4]);
-                        }
                         return $query->whereBetween('avg_rate', [round($request->rate)-0.5, round($request->rate)+0.4]);
                     })
                     ->when(isset($request->name), function ($query) use ($request) {

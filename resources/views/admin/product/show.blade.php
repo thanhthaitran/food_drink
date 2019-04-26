@@ -50,7 +50,7 @@
                 </div>
                 <div class="form-group">
                   <label>{{__('product.admin.create.description')}}</label>
-                  <textarea class="form-control" name="description" id="description" rows="3" disabled placeholder="">{!! $product->description !!}</textarea>
+                  <textarea class="form-control" name="description" rows="3" disabled placeholder="">{!! $product->description !!}</textarea>
                 </div>
                 <div class="form-group">
                 <label for="exampleInputFile" class="label-inline">{{__('product.admin.create.image')}}</label>
@@ -63,11 +63,6 @@
                 <input action="action" class="btn btn-primary" onclick="window.history.go(-1);" type="button" value="{{__('product.admin.show.back')}}" />
                 <a href="{{route('product.edit', ['product' => $product->id])}}" class="btn btn-primary">{{__('product.admin.show.edit_product')}}</a>
               </div>
-              <script>
-                  // Replace the <textarea id="editor1"> with a CKEditor
-                  // instance, using default configuration.
-                  CKEDITOR.replace( 'description' );
-                </script>
             </form>
           </div>
         </div>

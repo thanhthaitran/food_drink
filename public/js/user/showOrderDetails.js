@@ -3,17 +3,17 @@ var url = '/api'+ window.location.pathname +'?limit='+ LIMIT;
 $(document).ready(function () {
   getListOrderDetail(url);
   //next
-  // $('#next-order-detail').click(function (event) {
-  //   event.preventDefault();
-  //   url_next = $('#next-order-detail').attr('href');
-  //   getListOrderDetail(url_next);
-  // });
+  $('#next-order-detail').click(function (event) {
+    event.preventDefault();
+    url_next = $('#next-order-detail').attr('href');
+    getListOrderDetail(url_next);
+  });
   //prev
-  // $('#prev-order-detail').click(function (event) {
-  //   event.preventDefault();
-  //   url_prev = $('#prev-order-detail').attr('href');
-  //   getListOrderDetail(url_prev);
-  // });
+  $('#prev-order-detail').click(function (event) {
+    event.preventDefault();
+    url_prev = $('#prev-order-detail').attr('href');
+    getListOrderDetail(url_prev);
+  });
 });
 
 function getListOrderDetail(url) {
@@ -22,18 +22,18 @@ function getListOrderDetail(url) {
     url: url,
     headers: { 'Authorization': 'Bearer '+ localStorage.getItem('access_token') },
     success: function (response){
-      // if (response.data.order_details['next_page_url'] != null) {
-      //   $('#next-order-detail').show();
-      //   $('#next-order-detail').attr('href', response.data.order_details['next_page_url']);
-      // } else {
-      //   $('#next-order-detail').hide();
-      // }
-      // if (response.data.order_details['prev_page_url'] != null) {
-      //   $('#prev-order-detail').show();
-      //   $('#prev-order-detail').attr('href', response.data.order_details['prev_page_url']);
-      // } else {
-      //   $('#prev-order-detail').hide();
-      // }
+      if (response.data.order_details['next_page_url'] != null) {
+        $('#next-order-detail').show();
+        $('#next-order-detail').attr('href', response.data.order_details['next_page_url']);
+      } else {
+        $('#next-order-detail').hide();
+      }
+      if (response.data.order_details['prev_page_url'] != null) {
+        $('#prev-order-detail').show();
+        $('#prev-order-detail').attr('href', response.data.order_details['prev_page_url']);
+      } else {
+        $('#prev-order-detail').hide();
+      }
       appendOrderDetail(response);
     },
   });

@@ -30,7 +30,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>{{ __('common.stt') }}</th>
+                  <th>@sortablelink('id', __('post.index.id'))</th>
                   <th>@sortablelink('user.name', __('post.index.user_name'))</th>
                   <th>@sortablelink('product.name', __('post.index.product_name'))</th>
                   <th>@sortablelink('content', __('post.index.review'))</th>
@@ -81,7 +81,9 @@
                 </tr>
                 @endforeach
               </table>
-              {{ $posts->appends(\Request::except('page'))->render() }}
+              <div class="text-center">
+                {{ $posts->appends(\Request::except('page'))->render() }}
+              </div>
             </div>
             <!-- /.box-body -->
           </div>

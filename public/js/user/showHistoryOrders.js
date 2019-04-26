@@ -3,19 +3,18 @@ const limit = 5;
 var url = '/api/orders?limit=' + limit;
 $(document).ready(function () {
   getListOrder(url);
-  // paginateItem('pagination-order', getListOrder);
   //next
-  // $('#next-order').click(function (event) {
-  //   event.preventDefault();
-  //   url_next = $('#next-order').attr('href');
-  //   getListOrder(url_next);
-  // });
-  // //prev
-  // $('#prev-order').click(function (event) {
-  //   event.preventDefault();
-  //   url_prev = $('#prev-order').attr('href');
-  //   getListOrder(url_prev);
-  // });
+  $('#next-order').click(function (event) {
+    event.preventDefault();
+    url_next = $('#next-order').attr('href');
+    getListOrder(url_next);
+  });
+  //prev
+  $('#prev-order').click(function (event) {
+    event.preventDefault();
+    url_prev = $('#prev-order').attr('href');
+    getListOrder(url_prev);
+  });
   $(document).on('click', '#show-orders tr a[orderId]' ,function (event){ 
     event.preventDefault();
     if (confirm(Lang.get('order.user.cancel.are_your_sure'))) {
@@ -71,20 +70,18 @@ function getListOrder(url) {
     url: url,
     headers: { 'authorization': 'Bearer '+ localStorage.getItem('access_token') },
     success: function (response){
-      // if (response.data['next_page_url'] != null) {
-      //   $('#next-order').show();
-      //   $('#next-order').attr('href', response.data['next_page_url']);
-      // } else {
-      //   // $('#next-order').hide();
-      // }
-      // if (response.data['prev_page_url'] != null) {
-      //   $('#prev-order').show();
-      //   $('#prev-order').attr('href', response.data['prev_page_url']);
-      // } else {
-      //   // $('#prev-order').hide();
-      // }
-      pagination('pagination-order', response, getListOrder);
-      // pagination(response, 'prev-order', 'next-order', 'pagination-order');
+      if (response.data['next_page_url'] != null) {
+        $('#next-order').show();
+        $('#next-order').attr('href', response.data['next_page_url']);
+      } else {
+        $('#next-order').hide();
+      }
+      if (response.data['prev_page_url'] != null) {
+        $('#prev-order').show();
+        $('#prev-order').attr('href', response.data['prev_page_url']);
+      } else {
+        $('#prev-order').hide();
+      }
       appendOrder(response);
     }
   });

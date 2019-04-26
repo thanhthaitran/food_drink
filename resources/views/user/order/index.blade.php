@@ -28,16 +28,10 @@
                 </tbody>
               </table>
               <div class="alert-danger" hidden></div>
-              {{-- pagination --}}
-              <div class="home-inline"></div>
-              <ul id="pagination-order" class="pagination-item">
-
-              </ul>
-              {{-- <div class="pagination-area"> --}}
-                {{-- <a id="next-order" style="float: right;"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a> --}}
-                
-                {{-- <a id="prev-order" style="float: left;"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a> --}}
-              {{-- </div> --}}
+              <div class="pagination-area">
+                <a id="next-order"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a>
+                <a id="prev-order"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a>
+              </div>
             </div>
           </div>
         </div>
