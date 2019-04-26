@@ -238,7 +238,9 @@ jQuery(function() {
         var n, l, d, u, c, m, p, f = A.extend({}, this.dsetting, i),
           h = f.zindex || this.T(a),
           g = {
-            c: a.width(),
+            c: 450,
+            // c: a.width(),
+            // d: '450px'
             d: a.height()
           },
           o = new o,
@@ -321,7 +323,9 @@ jQuery(function() {
             zIndex: h,
             backgroundImage: "url(cannotbe)",
             position: "absolute",
+            // width: g.c,
             width: g.c,
+            // height: g.d,
             height: g.d,
             left: a.offsetsl().left,
             top: a.offsetsl().top

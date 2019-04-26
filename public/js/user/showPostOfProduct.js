@@ -7,13 +7,15 @@ var url_delete = '/api/posts/';
 
 $(document).ready(function () {
   // show review
-  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=updated_at&direction=desc', TYPE_REVIEW);
-  next(TYPE_REVIEW);
-  prev(TYPE_REVIEW);
+  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=created_at&direction=desc', TYPE_REVIEW);
+  // next(TYPE_REVIEW);
+  // prev(TYPE_REVIEW);
+  // paginateItemPost(TYPE_REVIEW);
   // show comment
-  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=updated_at&direction=desc', TYPE_COMMENT);
-  next(TYPE_COMMENT);
-  prev(TYPE_COMMENT);
+  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=created_at&direction=desc', TYPE_COMMENT);
+  // next(TYPE_COMMENT);
+  // prev(TYPE_COMMENT);
+  // paginateItemPost(TYPE_COMMENT);
   //delete post
   delPost();
 });
@@ -35,26 +37,39 @@ function prev(typePost) {
 }
 
 function getData(url, typePost) {
+  var a = '';
   $.ajax({
     url: url,
     type: "GET",
     success: function(response) {
-      if (response.data['next_page_url'] != null) {
-        $('#next-post'+ typePost).show();
-        $('#next-post'+ typePost).attr('href', response.data['next_page_url']);
-      } else {
-        $('#next-post'+ typePost).hide();
-      }
-      if (response.data['prev_page_url'] != null) {
-        $('#prev-post'+ typePost).show();
-        $('#prev-post'+ typePost).attr('href', response.data['prev_page_url']);
-      } else {
-        $('#prev-post'+ typePost).hide();
-      }
+      // if (response.data['next_page_url'] != null) {
+      //   $('#next-post'+ typePost).show();
+      //   $('#next-post'+ typePost).attr('href', response.data['next_page_url']);
+      // } else {
+      //   // $('#next-post'+ typePost).hide();
+      // }
+      // if (response.data['prev_page_url'] != null) {
+      //   $('#prev-post'+ typePost).show();
+      //   $('#prev-post'+ typePost).attr('href', response.data['prev_page_url']);
+      // } else {
+      //   // $('#prev-post'+ typePost).hide();
+      // }
+
+      pagination('pagination-post'+ typePost, response, getData, typePost);
+      // pagination(response, 'prev-post'+ typePost, 'next-post'+ typePost, 'pagination-post'+ typePost);
       appendPost(response, typePost);
     }
   });
 }
+
+// function paginateItemPost(typePost) {
+//   var $main = $('#pagination-post'+ typePost);
+//   $main.on('click', '.paginate-item', function(event) {
+//     event.preventDefault();
+//     urlPaginate = $(this).attr('href');
+//     getData(urlPaginate, typePost);
+//   });
+// }
 
 function appendPost(response, typePost) {
   var html = '';

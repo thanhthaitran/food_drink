@@ -25,11 +25,12 @@ class PostsController extends Controller
                 return $query->where('name', 'Like', "%$search%")
                             ->orWhere("content", 'Like', "%$search%");
             });
-            $posts = $posts->sortable()->paginate(Post::PAGINATE)->appends(['search' => $search]);
+            $posts = $posts->sortable()->orderBy('created_at', 'desc')->paginate(Post::PAGINATE)->appends(['search' => $search]);
         } else {
-            $posts = Post::with('product', 'user')->sortable()->paginate(Post::PAGINATE);
+            $posts = Post::with('product', 'user')->sortable()->orderBy('created_at', 'desc')->paginate(Post::PAGINATE);
         }
         $status = Post::$listStatus;
+        // dd($posts);
         return view('admin.post.index', ['posts' => $posts, 'status' => $status]);
     }
     

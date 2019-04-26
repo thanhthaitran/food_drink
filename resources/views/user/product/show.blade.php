@@ -52,8 +52,11 @@
 
                       </div>
                       <div class="pagination-area">
-                        <a id="next-post2"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a>
-                        <a id="prev-post2"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a>
+                        {{-- <a id="next-post2" style="float: right;"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a> --}}
+                        <ul id="pagination-post2" class="pagination-item">
+
+                        </ul>
+                        {{-- <a id="prev-post2" style="float: left;"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a> --}}
                       </div>
                     </div>
                     <div class="col-sm-7 col-lg-7 col-md-7">
@@ -100,8 +103,11 @@
 
                       </div>
                       <div class="pagination-area">
-                        <a id="next-post1"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a>
-                        <a id="prev-post1"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a>
+                        {{-- <a id="next-post1" style="float: right;"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a> --}}
+                        <ul id="pagination-post1" class="pagination-item">
+
+                        </ul>
+                        {{-- <a id="prev-post1" style="float: left;"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a> --}}
                       </div>
                     </div>
                     <div class="col-sm-7 col-lg-7 col-md-7">
