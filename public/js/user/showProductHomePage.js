@@ -25,16 +25,18 @@ $(document).ready(function () {
     appendHtml('rate-product', response);
   });
   //show product by category food
-  $.get('/api/products?category='+ idCategoryFood +'&limit='+ limitCategory, function(response){
-    getProductList('food-product', 'view-more-food', response);
-  });
-  viewMore('view-more-food', 'food-product');
+  // $.get('/api/products?category='+ idCategoryFood +'&limit='+ limitCategory, function(response){
+  //   getProductList('food-product', response, 'pagination-home-food');
+  // });
+  processAjax('/api/products?category='+ idCategoryFood +'&limit='+ limitCategory, 'food-product', 'pagination-home-food');
+  // viewMore('view-more-food', 'food-product');
   
   //show product by category drink
-  $.get('/api/products?category='+ idCategoryDrink +'&limit='+ limitCategory, function(response){
-    getProductList('drink-product', 'view-more-drink', response);
-  });
-  viewMore('view-more-drink', 'drink-product');
+  processAjax('/api/products?category='+ idCategoryDrink +'&limit='+ limitCategory, 'drink-product', 'pagination-home-drink');
+  // $.get('/api/products?category='+ idCategoryDrink +'&limit='+ limitCategory, function(response){
+  //   getProductList('drink-product', response, 'pagination-home-drink');
+  // });
+  // viewMore('view-more-drink', 'drink-product');
 
   //filter category
   $(document).on('click', '.filter-category', function(event) {
@@ -46,26 +48,50 @@ $(document).ready(function () {
 });
 
 // next
-function viewMore(idNext, id) {
-  $('#'+idNext).click(function (event) {
-    event.preventDefault();
-    url_next = $('#'+idNext).attr('href');
-    $.get(url_next, function(response){
-      getProductList(id, idNext, response);
-    });
-  })
-}
+// function viewMore(idNext, id) {
+//   $('#'+idNext).click(function (event) {
+//     event.preventDefault();
+//     url_next = $('#'+idNext).attr('href');
+//     $.get(url_next, function(response){
+//       getProductList(id, idNext, response);
+//     });
+//   })
+// }
 
-// get list product
-function getProductList(id, idNext, response) {
-  if (response.data['next_page_url'] != null) {
-    $('#'+idNext).show();
-    $('#'+idNext).attr('href', response.data['next_page_url']);
-  }
-  else {
-    $('#'+idNext).hide();
-  }
-  appendHtml(id, response);
+
+function processAjax(url, id, paginationID) {
+  $.get(url, function(response) {
+    // if (response.data['next_page_url'] != null) {
+    //   $('#'+idNext).show();
+    //   $('#'+idNext).attr('href', response.data['next_page_url']);
+    // }
+    // else {
+    //   $('#'+idNext).hide();
+    // }
+    $('#'+ paginationID).pagination({
+      total: response.data.total,
+      current: response.data.current_page,
+      length: response.data.per_page,
+      size: 2,
+      // prev: 'Previous',
+      // next: 'Next',
+      click: function(options,$target) {
+        urlItem = response.data.first_page_url.split('page', 1);
+        urlPage = urlItem[0] +'page='+ options.current;
+        processAjax(urlPage, id, paginationID);
+      }
+    });
+  
+    appendHtml(id, response);
+  })
+  .fail(function(response) {
+    if (response.responseJSON.message) {
+      window.alert(response.responseJSON.message);
+    }
+    else {
+      window.alert(response.responseJSON);
+    }
+  });
 }
 
 //append Html

@@ -19,6 +19,69 @@ function checkLogin() {
   });
 }
 
+function pagination(paginationID, response, getData, typePost) {
+  if(response.data.last_page > 1) {
+    $('#'+ paginationID).pagination({
+      total: response.data.total,
+      current: response.data.current_page,
+      length: response.data.per_page,
+      size: 2,
+      // prev: 'Previous',
+      // next: 'Next',
+      click: function(options,$target) {
+        urlItem = response.data.first_page_url.split('page', 1);
+        urlPage = urlItem[0] +'page='+ options.current;
+        if (typePost) {
+          getData(urlPage, typePost);
+        } else {
+          getData(urlPage);
+        }
+      }
+    });
+  } else {
+    $('#'+ paginationID).html('');
+  }
+}
+
+// function pagination(response, prev, next, IDPagination) {
+//   var a = '';
+//   var urlPage = '';
+//   var urlItem = '';
+//   for(var i = 1; i <= response.data.last_page; i++) {
+//     urlItem = response.data.first_page_url.split('page', 1);
+//     urlPage = urlItem[0] +'page='+i;
+//     if(response.data.current_page == 1) {
+//       $('#'+ prev).addClass('disabled');
+//     } else {
+//       $('#'+ prev).removeClass('disabled');
+//     }
+//     if (response.data.current_page == response.data.last_page) {
+//       $('#'+ next).addClass('disabled');
+//     } else {
+//       $('#'+ next).removeClass('disabled');
+//     }
+//     if(i == response.data.current_page) {
+//       a = a + '<li>\
+//               <a class="paginate-item current-page" href="'+ urlPage +'" style="color: #fff">'+ i +'</a>\
+//             </li>';
+//     } else{
+//       a = a + '<li>\
+//                 <a class="paginate-item" href="'+ urlPage +'" style="color: #fff">'+ i +'</a>\
+//               </li>';
+//     }
+//   }
+//   $('#'+ IDPagination).html(a);
+// }
+
+// function paginateItem(IDPagination, getAjax) {
+//   var $main = $('#'+ IDPagination);
+//   $main.on('click', '.paginate-item', function(event) {
+//     event.preventDefault();
+//     urlPaginate = $(this).attr('href');
+//     getAjax(urlPaginate);
+//   });
+// }
+
 $( document ).ready(function() {
   $('#product-search').on('submit', function (event) {
     event.preventDefault();

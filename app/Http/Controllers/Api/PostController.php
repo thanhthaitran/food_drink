@@ -52,6 +52,11 @@ class PostController extends ApiController
                         })->get();
         $input = $request->only('type', 'content');
         if ($input['type'] == Post::REVIEW) {
+            foreach($user->posts as $post) {
+                if($post->product_id == $product->id) {
+                    return $this->errorResponse('Conflict', Response::HTTP_CONFLICT);
+                }
+            }
             if ($order->isEmpty()) {
                 return $this->errorResponse(__('api.error_405'), Response::HTTP_METHOD_NOT_ALLOWED);
             }

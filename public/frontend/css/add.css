@@ -17,6 +17,7 @@
 .home-inline {
   display: inline-block;
   width: 100%;
+  border-bottom: 1px solid #e0e0e0;
 }
 .value-price {
   margin-left: 15px;
@@ -75,7 +76,6 @@
 }
 .fa.fa-trash {
   float: right;
-  margin-right: 20px;
 }
 .pagination-area a {
   border: rgb(214, 153, 153);
@@ -83,11 +83,11 @@
   padding: 5px 10px;
   color: #fff;
 }
-.pagination-area a:first-child {
-  float: left;
-}
-.pagination-area a:last-child {
+.pagination-area #next {
   float: right;
+}
+.pagination-area #prev {
+  float: left;
 }
 .cancel-order,
 .image-category {
@@ -240,4 +240,22 @@ a.cancel-edit-order:hover {
 .large-image a img {
   width: 450px !important;
   height: 450px !important;
+}
+
+.pagination>li>a, .pagination>li>span {
+  display: inline;
+  padding: 7px 10px;
+  cursor: default;
+  text-align: center;
+  color: #4caf50;
+}
+
+.review-ratting {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+
+.review-ratting:last-child {
+  border-bottom: none;
+  padding-bottom: 0px;
 }
