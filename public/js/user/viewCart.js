@@ -24,7 +24,7 @@ function itemCart(cartProduct) {
   var subTotal = 0;
   var html = '';
   $.each(cartProduct, function(index, value) {
-    total = parseFloat((value.count*value.price).toFixed(2));
+    total = value.count*value.price;
     subTotal = subTotal + total;
     html += '<tr id="item-cart'+ value.id +'">\
               <td class="cart_product"><a href="products/'+ value.id +'"><img src="'+ value.img_url +'" alt="Product"></a></td>\
@@ -52,7 +52,7 @@ function itemCart(cartProduct) {
     }
     changeQuantity(value.id, value.quantity, index);
   });
-  $('.sub-total').text(parseFloat(subTotal).toFixed(2));
+  $('.sub-total').text(subTotal);
 }
 
 function changeQuantity(id, quantity, index) {

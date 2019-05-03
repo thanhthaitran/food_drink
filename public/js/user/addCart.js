@@ -24,7 +24,7 @@ function viewCart() {
         if (cartProduct[index]['count'] > cartProduct[index]['quantity']) {
           $('.top-cart-content .quantity-stock').show();
         }
-        total = parseFloat((value.count*value.price).toFixed(2));
+        total = value.count*value.price;
         subTotal = subTotal + total;
         html += '<li class="item">\
                   <a href="products/'+ value.id +'" title="'+ value.name +'" class="product-image"><img src="'+ value.img_url +'" alt="'+ value.name +'" width="65"></a>\
@@ -35,7 +35,7 @@ function viewCart() {
                 </li>';
       });
       $('#cart-sidebar').html(html);
-      $('.top-subtotal .sub-total').text(parseFloat(subTotal).toFixed(2));
+      $('.top-subtotal .sub-total').text(subTotal);
     }
   }
 }
