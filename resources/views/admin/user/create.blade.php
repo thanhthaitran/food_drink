@@ -52,7 +52,7 @@
                   <input type="password" class="form-control" id="InputPassword" name="password" placeholder="{{__('user.admin.create.enter_password')}}">
                   @if($errors->first('password')) 
                     <span class="help-block">
-                      <strong class="text-danger">{{ $errors->first('passwordư') }}</strong>
+                      <strong class="text-danger">{{ $errors->first('password') }}</strong>
                     </span>
                   @endif
                 </div>

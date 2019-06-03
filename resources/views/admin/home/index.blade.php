@@ -17,7 +17,7 @@
           <div class="info-box">
             <span class="info-box-icon bg-red"><i class="fa fa-cart-arrow-down"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text">{{__('home.total_product_ordered')}}</span>
+              <span class="info-box-text" style="white-space: unset !important;">{{__('home.total_product_ordered')}}</span>
               <span class="info-box-number">{{ $totalProductOrdered }}</span>
             </div>
           </div>
@@ -37,7 +37,7 @@
             <span class="info-box-icon bg-yellow"><i class="fa fa-credit-card"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">{{__('home.total_revenue')}}</span>
-              <span class="info-box-number">{{ $totalRevenue }} &dollar;</span>
+              <span class="info-box-number">&dollar; {{ $totalRevenue }}</span>
             </div>
           </div>
         </div>
