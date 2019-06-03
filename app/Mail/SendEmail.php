@@ -13,6 +13,7 @@ class SendEmail extends Mailable
     use Queueable, SerializesModels;
 
     protected $user;
+    public $password;
 
     /**
      * Create a new message instance.
@@ -21,9 +22,10 @@ class SendEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $password)
     {
         $this->user = $user;
+        $this->password = $password;
     }
 
     /**
@@ -34,6 +36,11 @@ class SendEmail extends Mailable
     public function build()
     {
         return $this->view('email.content')
-        ->with(['email'=>$this->user->email,'name'=>$this->user->name]);
+        ->with(['email'=>$this->user->email,
+                'name'=>$this->user->name,
+                'password'=>$this->password,
+                'address'=>$this->user->userInfo->address,
+                'phone'=>$this->user->userInfo->phone,
+                ]);
     }
 }

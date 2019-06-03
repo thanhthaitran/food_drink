@@ -13,8 +13,8 @@
         'checkout' => 'Tiến hành thanh toán',
         'are_you_sure' => 'Bạn có chắc chắn loại bỏ sản phẩm này khỏi giỏ hàng?',
         'quantity_greater' => 'Số lượng phải lớn hơn 0.',
-        'not_exceed' => 'Không vượt quá số lượng trong kho (',
-        'close' => ').',
-        'number_product' => '(Số lượng sản phẩm còn lại trong kho: ',
+        'not_exceed' => 'Chỉ còn',
+        'close' => ' sản phẩm',
+        'number_product' => 'Chỉ còn ',
         'please_login' => 'Vui lòng đăng nhập để thanh toán',
     ];

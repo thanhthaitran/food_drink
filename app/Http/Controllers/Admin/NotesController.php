@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Note;
+use Auth;
 use App\Http\Requests\UpdateNoteRequest;
 
 class NotesController extends Controller
@@ -33,12 +34,16 @@ class NotesController extends Controller
      */
     public function update(UpdateNoteRequest $request, Note $note)
     {
-        try {
-            $note['content'] = $request->content;
-            $note->save();
-            return response()->json($note->load('order'));
-        } catch (Exception $e) {
-            return response(trans('message.post.fail_delete'), Response::HTTP_BAD_REQUEST);
+        if($note->user_id == Auth::id()) {
+            try {
+                $note['content'] = $request->content;
+                $note->save();
+                return response()->json($note->load('order'));
+            } catch (Exception $e) {
+                return response(trans('message.post.fail_delete'), Response::HTTP_BAD_REQUEST);
+            }
+        } else {
+            return response(__('api.error_405'), Response::HTTP_METHOD_NOT_ALLOWED);
         }
     }
 }

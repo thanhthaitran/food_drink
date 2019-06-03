@@ -6,7 +6,29 @@
     <div class="row">
       <div class="col-main">
         <div class="product-view-area">
-          
+          <div class="product-big-image col-xs-12 col-sm-5 col-lg-5 col-md-5">
+            <div class="large-image"> 
+              <a href="{{ asset('images/products/'.$product->images->first()['image']) }}" class="cloud-zoom" id="zoom1" rel="useWrapper: false, adjustY:0, adjustX:20"> 
+                <img class="zoom-img" src="{{ asset('images/products/'.$product->images->first()['image']) }}" alt="{{ $product->name }}"> 
+              </a> 
+            </div>
+            <div class="flexslider flexslider-thumb">
+              <ul class="previews-list slides">
+                @if(count($product->images) < 4)
+                  @foreach($product->images as $image)
+                    <li style="width: 100px; float: left; display: block;"><a href='{{ asset('images/products/'.$image->image) }}' class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{ asset('images/products/'.$image->image) }}' "><img src="{{ asset('images/products/'.$image->image) }}" alt = "{{ $product->name }}"/></a></li>
+                  @endforeach
+                @else
+                  @foreach($product->images as $image)
+                    <li><a href='{{ asset('images/products/'.$image->image) }}' class='cloud-zoom-gallery' rel="useZoom: 'zoom1', smallImage: '{{ asset('images/products/'.$image->image) }}' "><img src="{{ asset('images/products/'.$image->image) }}" alt = "{{ $product->name }}"/></a></li>
+                  @endforeach
+                @endif
+              </ul>
+            </div>
+            
+            <!-- end: more-images --> 
+            
+          </div>
         </div>
       </div>
       <div class="product-overview-tab">
@@ -29,10 +51,16 @@
                       <div id="contain-posts2">
 
                       </div>
-                      <div class="pagination-area">
-                        <a id="next-post2"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a>
-                        <a id="prev-post2"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a>
-                      </div>
+                      {{-- pagination --}}
+                      <div class="home-inline"></div>
+                      <ul id="pagination-post2" class="pagination-item">
+
+                      </ul>
+                      {{-- <div class="pagination-area"> --}}
+                        {{-- <a id="next-post2" style="float: right;"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a> --}}
+
+                        {{-- <a id="prev-post2" style="float: left;"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a> --}}
+                      {{-- </div> --}}
                     </div>
                     <div class="col-sm-7 col-lg-7 col-md-7">
                       <div class="reviews-content-right">
@@ -77,10 +105,16 @@
                       <div id="contain-posts1">
 
                       </div>
-                      <div class="pagination-area">
-                        <a id="next-post1"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a>
-                        <a id="prev-post1"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a>
-                      </div>
+                      {{-- pagination --}}
+                      <div class="home-inline"></div>
+                      <ul id="pagination-post1" class="pagination-item">
+
+                      </ul>
+                      {{-- <div class="pagination-area"> --}}
+                        {{-- <a id="next-post1" style="float: right;"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a> --}}
+
+                        {{-- <a id="prev-post1" style="float: left;"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a> --}}
+                      {{-- </div> --}}
                     </div>
                     <div class="col-sm-7 col-lg-7 col-md-7">
                       <div class="reviews-content-right">
@@ -106,7 +140,7 @@
             </div>
           </div>
           
-          <div class="shop-inner">
+          {{-- <div class="shop-inner">
             <div class="page-title">
               <h2>{{ __('product.user.recommend.related_products') }}</h2>
             </div>
@@ -116,7 +150,7 @@
               </ul>
             </div>
             <div class="home-inline"></div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>
@@ -127,5 +161,5 @@
   <script src="{{ asset('js/user/showProductDetail.js') }}"></script>
   <script src="{{ asset('js/user/showPostOfProduct.js') }}"></script>
   <script src="{{ asset('js/user/addPost.js') }}"></script>
-  <script src="{{ asset('js/user/recommendProduct.js') }}"></script>
+  {{-- <script src="{{ asset('js/user/recommendProduct.js') }}"></script> --}}
 @endsection

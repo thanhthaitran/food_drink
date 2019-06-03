@@ -13,11 +13,11 @@
         'view_all_order' => 'View All Orders',
         'latest_order' => 'Latest Orders',
         'user' => [
-            'title' => 'Food & Drink',
+            'title' => 'Fast Foods & Drinks',
             'title_edit_user' => 'Edit User',
             'title_forgot' => 'Forgot Password',
             'header' => [
-                'welcome' => 'Welcome to Food & drink!',
+                'welcome' => 'Welcome to Fast Foods & Drinks!',
                 'call_us' => 'Call Us: +123.456.789',
                 'my_account' => 'My Account',
                 'log_in' => 'Log In',
@@ -37,23 +37,23 @@
                 'edit_profile' => 'Edit profile',
             ],
             'nav' => [
-                'shop_food_drink' => 'Shop Foods and Drinks',
+                'shop_food_drink' => 'Shop Fast Foods and Drinks',
                 'all_product' => 'All Products',
             ],
             'footer' => [
                 'copyright' => 'Copyright © 2018',
-                'food_drink' => 'Food & Drink',
+                'food_drink' => 'Fast Foods & Drink',
                 'all_right' => '. All Rights Reserved.',
             ],
             'main' => [
-                'new_product' => 'Top New Product',
-                'rate_product' => 'Top Rate Product',
-                'food' => 'Food',
+                'new_product' => 'Top New Products',
+                'rate_product' => 'Top Rate Products',
+                'food' => 'Fast Food',
                 'drink' => 'Drink',
                 'add_to_cart' => 'Add to Cart',
                 'money' => '$',
-                'view_more_food' => 'Get more products by categoty Food',
-                'view_more_drink' => 'Get more products by categoty Drink',
+                'view_more_food' => 'Get more products by categoty Fast Foods',
+                'view_more_drink' => 'Get more products by categoty Drinks',
             ],
         ]
     ];

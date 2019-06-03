@@ -17,6 +17,7 @@
 .home-inline {
   display: inline-block;
   width: 100%;
+  border-bottom: 1px solid #e0e0e0;
 }
 .value-price {
   margin-left: 15px;
@@ -75,7 +76,6 @@
 }
 .fa.fa-trash {
   float: right;
-  margin-right: 20px;
 }
 .pagination-area a {
   border: rgb(214, 153, 153);
@@ -83,11 +83,11 @@
   padding: 5px 10px;
   color: #fff;
 }
-.pagination-area a:first-child {
-  float: left;
-}
-.pagination-area a:last-child {
+.pagination-area #next {
   float: right;
+}
+.pagination-area #prev {
+  float: left;
 }
 .cancel-order,
 .image-category {
@@ -126,10 +126,10 @@ a.cancel-edit-order:hover {
   float: left;
 }
 .container .row .header-left {
-  width: 40%;
+  width: 50%;
 }
 .container .row .header-right {
-  width: 60%;
+  width: 50%;
 }
 .add-order {
   padding: 8px 10px !important;
@@ -188,4 +188,74 @@ a.cancel-edit-order:hover {
   border-color: #53f04e;
   font-variant: small-caps;
   font-weight: bold;
+}
+
+.mega-menu-title h3 {
+  text-align: center;
+  padding: 19px 0px 11px !important;
+}
+.col-sm-6 .banner-box img {
+  width: 585px;
+  height: 228px;
+}
+
+.pr-img-area img {
+  height: 250px !important;
+}
+
+.previews-list img {
+  height: 94px;
+}
+
+.numbers-row .price-fil {
+  width: 37%;
+  display: inline;
+}
+
+.numbers-row .price-fil-submit {
+  position: relative;
+  top: -34px;
+  line-height: 28px;
+  padding: 3px 10px 2px 10px;
+  float: right;
+  display: inline-block;
+  background: #fafafa;
+  color: #39342e;
+  border-top: 1px #e8e6e2 solid;
+  border-right: 1px #e8e6e2 solid;
+  border-bottom: 1px #e8e6e2 solid;
+  border-radius: 5px;
+}
+
+.col-sm-12 form .home-address {
+  width: 60%;
+}
+
+.act, .btn:hover {
+  background-color: #ffa200;
+  color: white;
+  border: none;
+}
+
+.large-image a img {
+  width: 450px !important;
+  height: 450px !important;
+}
+
+.pagination>li>a, .pagination>li>span {
+  display: inline;
+  padding: 7px 10px;
+  cursor: default;
+  text-align: center;
+  color: #4caf50;
+}
+
+.review-ratting {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+
+.review-ratting:last-child {
+  border-bottom: none;
+  padding-bottom: 0px;
 }

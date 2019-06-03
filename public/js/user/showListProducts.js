@@ -1,5 +1,6 @@
 function appendHtml(response) {
   let html = '';
+  var avg_rate = 0;
   response.data.data.forEach(element => {
     var stars = '';
     var rate = 0;
@@ -9,7 +10,10 @@ function appendHtml(response) {
       img = element.images[0].image;
       img_url = element.images[0].image_url;
     }
-    rate = Math.round(element.avg_rate);
+    if (element.avg_rate != null) {
+      avg_rate = element.avg_rate;
+    }
+    rate = Math.round(avg_rate);
     for (i = 1; i <= 5 ; i++) {
       if (i <= rate) {
         stars += '<i class="fa fa-star"></i>';
@@ -38,9 +42,9 @@ function appendHtml(response) {
                     <div class="info-inner">\
                       <div class="item-title"> <a title="Ipsums Dolors Untra" href="products/'+ element.id +'">'+element.name+'</a> </div>\
                         <div class="item-content">\
-                          <div class="rating">'+ stars +'<span>('+ element.avg_rate +')</span></div>\
+                          <div class="rating">'+ stars +'<span>('+ avg_rate +')</span></div>\
                         <div class="item-price">\
-                          <div class="price-box"> <span class="regular-price"> <span class="price">'+element.price+'</span> </span> </div>\
+                          <div class="price-box"> <span class="regular-price"> <span class="price">'+ Lang.get('home.user.main.money') +element.price+'</span> </span> </div>\
                         </div>\
                       </div>\
                     </div>\
@@ -51,20 +55,27 @@ function appendHtml(response) {
           });
     $('#products').html(html);
 }
+
 function processAjax(url){
   $.get(url, function(response) {
-    if (response.data['next_page_url'] != null) {
-      $('#next').show();
-      $('#next').attr('href', response.data['next_page_url']);
-    } else {
-      $('#next').hide();
-    }
-    if (response.data['prev_page_url'] != null) {
-      $('#prev').show();
-      $('#prev').attr('href', response.data['prev_page_url']);
-    } else {
-      $('#prev').hide();
-    }
+    // var urlPage = '';
+    // var urlItem = '';
+    // if (response.data.next_page_url != null) {
+    //   $('#next').show();
+    //   $('#next').attr('href', response.data.next_page_url);
+    // } else {
+    //   // $('#prev').hide();
+    // }
+    // if (response.data['prev_page_url'] != null) {
+    //   $('#prev').show();
+    //   $('#prev').attr('href', response.data['prev_page_url']);
+    // } else {
+    //   // $('#next').hide();
+    // }
+    
+    pagination('pagination-demo', response, processAjax);
+    
+    // pagination(response, 'prev', 'next', 'pagination-demo');
     appendHtml(response);
   })
   .fail(function(response) {
@@ -84,6 +95,8 @@ $(document).ready(function () {
   } else {
     url = url + window.location.search;
   }
+  processAjax(url);
+  // filter product
   $(".filter-price").on("click", function () {
     from = $('#from').val();  
     to = $('#to').val();
@@ -95,6 +108,7 @@ $(document).ready(function () {
     }    
     processAjax(url);
   });
+  // filter rate
   $(".filter-rate").on("click", function (){
     rate = $(this).val();
     var url_rate = 'rate='+ rate;
@@ -113,7 +127,7 @@ $(document).ready(function () {
     } else {
       url += '?category='+ id;
     }
-    processAjax(url);
+    processAjax(url); 
   });
   // filter name product
   $('#filter-name').submit(function () {
@@ -124,23 +138,22 @@ $(document).ready(function () {
     } else {
       url += '?name='+ name;
     }
-    processAjax(url);
+    processAjax(url); 
   });
   //refresh filter
   $('.block-subtitle').on('click', function() {
     window.location.href = '/products';
   });
-  processAjax(url);
   //next
-  $('#next').click(function (event) {
-    event.preventDefault();
-    url_next = $('#next').attr('href');
-    processAjax(url_next);
-  });
-  //prev
-  $('#prev').click(function (event) {
-    event.preventDefault();
-    url_prev = $('#prev').attr('href');
-    processAjax(url_prev);
-  });
+  // $('#next').click(function (event) {
+  //   event.preventDefault();
+  //   url_next = $('#next').attr('href');
+  //   processAjax(url_next);
+  // });
+  // //prev
+  // $('#prev').click(function (event) {
+  //   event.preventDefault();
+  //   url_prev = $('#prev').attr('href');
+  //   processAjax(url_prev);
+  // });
 });

@@ -63,8 +63,12 @@
         <h2 class="saider-bar-title">{{ __('sidebar.price') }} ({{ __('sidebar.money') }})</h2>
         <div class="cart-plus-minus">
           <div class="numbers-row">
-              <span class="value-price">{{ __('sidebar.min_price') }}</span>
-              <select id="from" class="form-control filter-price">
+              <input id="from" type="number" step="any" class="form-control price-fil" placeholder="{{ __('sidebar.min_price') }}" name="search">
+              <span>-</span>
+              <input id="to" type="number" step="any" class="form-control price-fil" placeholder="{{ __('sidebar.max_price') }}" name="search">
+              <button class="btn-search filter-price price-fil-submit" type="submit"><i class="fa fa-search"></i></button>
+              {{-- <span class="value-price">{{ __('sidebar.min_price') }}</span> --}}
+              {{-- <select id="from" class="form-control filter-price">
                 <option value="1">1</option>
                 <option value="20">20</option>
                 <option value="40">40</option>
@@ -78,7 +82,7 @@
                 <option value="160">160</option>
                 <option value="180">180</option>
                 <option value="250">250</option>
-              </select>
+              </select> --}}
           </div>
         </div>
       </div>
@@ -87,7 +91,7 @@
         <div class="cart-plus-minus">
           <div class="numbers-row">
             <form method="post" id="filter-name">
-              <input type="text" id="name" class="form-control" placeholder="{{ __('sidebar.name_product') }}" name="search">
+              <input type="text" id="name" class="form-control" placeholder="{{ __('sidebar.name_product') }}" name="search" required>
               <button class="btn-search submit-filter" type="submit"><i class="fa fa-search"></i></button>
             </form>
           </div>

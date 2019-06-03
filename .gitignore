@@ -17,3 +17,4 @@ storage/debugbar/
 .env.testing.local
 .env.test
 .DS_Store
+/public/ckeditor

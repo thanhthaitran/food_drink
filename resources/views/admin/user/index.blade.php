@@ -20,7 +20,7 @@
               <a href="{{route('user.create')}}" class="add-users">{{__('user.admin.index.new_user')}}</a>
               <div class="box-tools">
                 <form class="input-group input-group-sm" style="width: 150px;" action="{!! route('user.index') !!}" method="GET">
-                  <input type="text" name="user_name" class="form-control pull-right" placeholder="{{__('user.admin.index.search')}}">
+                  <input type="text" name="search" class="form-control pull-right" placeholder="{{__('user.admin.index.search')}}">
                   <div class="input-group-btn">
                   <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
@@ -31,16 +31,23 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>@sortablelink('id', __('user.admin.index.id'))</th>
+                  <th>{{ __('common.stt') }}</th>
                   <th>@sortablelink('name', __('user.admin.index.name'))</th>
                   <th>@sortablelink('email', __('user.admin.index.email'))</th>
                   <th>{{__('user.admin.index.phone')}}</th>
                   <th>{{__('user.admin.index.avatar')}}</th>
                   <th>Action</th>
                 </tr>
+                <?php
+                  $index = -1;
+                ?>
                 @foreach($users as $user)
+                <?php
+                  $index++;
+                  $nubmer = 10*($users->currentPage() - 1 )
+                ?>
                 <tr>
-                  <td>{{ $user->id }}</td>
+                  <td>{{ $index + $nubmer + 1 }}</td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->email }}</td>
                   <td>{{ $user->userInfo->phone }}</td>

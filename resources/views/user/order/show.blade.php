@@ -25,8 +25,8 @@
                 </tbody>
               </table>
               <div class="pagination-area">
-                <a id="next-order-detail"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a>
-                <a id="prev-order-detail"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a>
+                {{-- <a id="next-order-detail"><span>{{ __('product.user.next') }} <i class="fa fa-forward"></i></span></a>
+                <a id="prev-order-detail"><span> <i class="fa fa-backward"></i> {{ __('product.user.prev') }}</span></a> --}}
               </div>
             </div>
           </div>

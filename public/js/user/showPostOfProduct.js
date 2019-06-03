@@ -7,13 +7,15 @@ var url_delete = '/api/posts/';
 
 $(document).ready(function () {
   // show review
-  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=updated_at&order=desc', TYPE_REVIEW);
-  next(TYPE_REVIEW);
-  prev(TYPE_REVIEW);
+  getData('/api' + path + '/posts?type='+ TYPE_REVIEW +'&status=' + ENABLE +'&sort=created_at&direction=desc', TYPE_REVIEW);
+  // next(TYPE_REVIEW);
+  // prev(TYPE_REVIEW);
+  // paginateItemPost(TYPE_REVIEW);
   // show comment
-  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=updated_at&order=desc', TYPE_COMMENT);
-  next(TYPE_COMMENT);
-  prev(TYPE_COMMENT);
+  getData('/api' + path + '/posts?type='+ TYPE_COMMENT +'&status=' + ENABLE +'&sort=created_at&direction=desc', TYPE_COMMENT);
+  // next(TYPE_COMMENT);
+  // prev(TYPE_COMMENT);
+  // paginateItemPost(TYPE_COMMENT);
   //delete post
   delPost();
 });
@@ -35,29 +37,43 @@ function prev(typePost) {
 }
 
 function getData(url, typePost) {
+  var a = '';
   $.ajax({
     url: url,
     type: "GET",
     success: function(response) {
-      if (response.data['next_page_url'] != null) {
-        $('#next-post'+ typePost).show();
-        $('#next-post'+ typePost).attr('href', response.data['next_page_url']);
-      } else {
-        $('#next-post'+ typePost).hide();
-      }
-      if (response.data['prev_page_url'] != null) {
-        $('#prev-post'+ typePost).show();
-        $('#prev-post'+ typePost).attr('href', response.data['prev_page_url']);
-      } else {
-        $('#prev-post'+ typePost).hide();
-      }
+      // if (response.data['next_page_url'] != null) {
+      //   $('#next-post'+ typePost).show();
+      //   $('#next-post'+ typePost).attr('href', response.data['next_page_url']);
+      // } else {
+      //   // $('#next-post'+ typePost).hide();
+      // }
+      // if (response.data['prev_page_url'] != null) {
+      //   $('#prev-post'+ typePost).show();
+      //   $('#prev-post'+ typePost).attr('href', response.data['prev_page_url']);
+      // } else {
+      //   // $('#prev-post'+ typePost).hide();
+      // }
+
+      pagination('pagination-post'+ typePost, response, getData, typePost);
+      // pagination(response, 'prev-post'+ typePost, 'next-post'+ typePost, 'pagination-post'+ typePost);
       appendPost(response, typePost);
     }
   });
 }
 
+// function paginateItemPost(typePost) {
+//   var $main = $('#pagination-post'+ typePost);
+//   $main.on('click', '.paginate-item', function(event) {
+//     event.preventDefault();
+//     urlPaginate = $(this).attr('href');
+//     getData(urlPaginate, typePost);
+//   });
+// }
+
 function appendPost(response, typePost) {
   var html = '';
+  avatar_url = '../images/users/default-user-avatar.png';
   response.data.data.forEach(post => {
     var stars = '';
     if (post.type == TYPE_REVIEW) {
@@ -71,6 +87,9 @@ function appendPost(response, typePost) {
         }
       }
     }
+    if (post.user.user_info.avatar != null) {
+      avatar_url = post.user.user_info.avatar_url;
+    }
     var showAction = '';
     if (localStorage.getItem('access_token')) {
       if(data_user.id == post.user_id){
@@ -78,7 +97,7 @@ function appendPost(response, typePost) {
       }
     }
     html+='<div class="review-ratting" id="post-'+post.id+'">\
-            <img class="avatar-user-post" src="'+ post.user.user_info.avatar_url +'" >\
+            <img class="avatar-user-post" src="'+ avatar_url +'" >\
             <h5 id="user-name" class="entry-title display-inline">'+ post.user.name +'</h5>\
             '+ showAction +'\
             <div class="rating" id="rating-post">'+ stars +'\

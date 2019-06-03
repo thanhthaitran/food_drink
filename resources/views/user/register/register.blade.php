@@ -12,36 +12,36 @@
           {{csrf_field()}}
           <div class="box-body">
             <div class="form-group">
-              <label for="InputName">{{ __('user.admin.create.name') }}</label>
+              <label for="InputName">{{ __('user.admin.create.name') }}<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" id="InputName" name="name" placeholder="{{ __('user.admin.create.enter_name') }}">
               <span id="name_error" class="help-block" hidden>
                 <strong class="text-danger"></strong>
               </span>
             </div>
             <div class="form-group">
-              <label for="InputEmail">{{ __('user.admin.create.email') }}</label>
+              <label for="InputEmail">{{ __('user.admin.create.email') }}<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" id="InputEmail" name="email" placeholder="{{ __('user.admin.create.enter_email') }}">
               <span id="email_error" class="help-block" hidden>
                 <strong class="text-danger"></strong>
               </span>
             </div>
             <div class="form-group">
-              <label for="InputPassword">{{ __('user.admin.create.password') }}</label>
+              <label for="InputPassword">{{ __('user.admin.create.password') }}<span class="text-danger"> *</span></label>
               <input type="password" class="form-control" id="InputPassword" name="password" placeholder="{{ __('user.admin.create.enter_password') }}">
               <span id="password_error" class="help-block" hidden>
                 <strong class="text-danger"></strong>
               </span>
             </div>
             <div class="form-group">
-              <label for="InputAddress">{{ __('user.admin.create.address') }}</label> <br>
-              <span>{{ __('user.admin.register.ship') }}</span>
+              <label for="InputAddress">{{ __('user.admin.create.address') }}<span class="text-danger"> *</span></label> <br>
+              {{-- <span>{{ __('user.admin.register.ship') }}</span> --}}
               <input type="text" class="form-control" id="InputAddress" name="address" placeholder="{{ __('user.admin.create.enter_address') }}">
               <span id="address_error" class="help-block" hidden>
                 <strong class="text-danger"></strong>
               </span>
             </div>
             <div class="form-group">
-              <label for="InputPhone">{{ __('user.admin.create.phone') }}</label>
+              <label for="InputPhone">{{ __('user.admin.create.phone') }}<span class="text-danger"> *</span></label>
               <input type="text" class="form-control" id="InputPhone" name="phone" placeholder="{{ __('user.admin.create.enter_phone') }}">
               <span id="phone_error" class="help-block" hidden>
                 <strong class="text-danger"></strong>

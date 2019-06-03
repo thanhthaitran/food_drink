@@ -67,7 +67,7 @@
             'add_to_cart' => 'Add to Cart',
             'money' => '$',
             'next' => 'Next',
-            'prev' => 'Prev',
+            'prev' => 'Previous',
             'filter' => [
                 'title' => 'Show All Product',
                 'list_product' => 'List Product',
@@ -94,12 +94,13 @@
                 'error_message' => [
                     401 => 'You need login to continue',
                     405 => 'You need to purchase to review',
+                    409 => 'You reviewed this product',
                 ],
                 'comment' => [
                     'comments' => 'Comments',
                     'comment' => 'Comment',
                     'write_your_comment' => 'Write Your Own Comment',
-                    'comment_active' => 'Your comment sended and please admin active',
+                    'comment_active' => 'Your comment has been submitted and please wait for the administrator to activate',
                 ],
                 'review' => [
                     'reviews' => 'Reviews',
@@ -107,7 +108,7 @@
                     'write_your_review' => 'Write Your Own Review',
                     'star' => 'star',
                     'stars' => 'stars',
-                    'review_active' => 'Your review sended and please admin active',
+                    'review_active' => 'Your review has been submitted and please wait for the administrator to activate',
                 ]
             ],
             'recommend' => [

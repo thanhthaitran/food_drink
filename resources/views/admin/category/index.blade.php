@@ -1,5 +1,5 @@
 @extends('admin.layout.master')
-@section('title', __('user.admin.index.title') )
+@section('title', __('category.admin.index.title') )
 @section('content')
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,14 +32,21 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>@sortablelink('id', __('category.admin.index.id'))</th>
+                  <th>{{ __('common.stt') }}</th>
                   <th>@sortablelink('name', __('category.admin.index.name'))</th>
                   <th>{{__('category.admin.index.parent')}}</th>
                   <th>{{__('category.admin.index.action')}}</th>
                 </tr>
+                <?php
+                  $index = -1;
+                ?>
                 @foreach($categories as $category)
+                <?php
+                  $index++;
+                  $nubmer = 10*($categories->currentPage() - 1 )
+                ?>
                 <tr>
-                  <td>{{ $category->id }}</td>
+                    <td>{{ $index + $nubmer + 1 }}</td>
                   <td>{{ $category->name }}</td> 
                   <td>
                   @foreach($category->parentCategories as $parentCategory)

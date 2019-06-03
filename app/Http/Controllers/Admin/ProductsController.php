@@ -67,6 +67,11 @@ class ProductsController extends Controller
         DB::beginTransaction();
         try {
             $product = Product::create($request->all());
+            $product->update([
+                'avg_rate' => 0,
+                'sum_rate' => 0,
+                'total_rate' => 0,
+            ]);
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $image) {
                     $nameNew = time().'_'.md5(rand(0, 99999)).'.'.$image->getClientOriginalExtension();
@@ -110,7 +115,7 @@ class ProductsController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         DB::beginTransaction();
-        try {
+        try { 
             $arrIdImage = preg_split("/[,]/", $request->delImg);
             $product->update($request->all());
             if ($request->hasFile('images')) {

@@ -43,6 +43,7 @@
             ],
             'show' => [
                 'info' => 'Category Info',
+                'title' => 'Show detail category',
             ],
         ],
     ];

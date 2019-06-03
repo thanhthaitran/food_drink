@@ -33,7 +33,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>@sortablelink('id', __('product.admin.index.id'))</th>
+                  <th>{{ __('common.stt') }}</th>
                   <th>@sortablelink('name', __('product.admin.index.name'))</th>
                   <th>@sortablelink('category.name', __('product.admin.index.category'))</th>
                   <th>@sortablelink('price', __('product.admin.index.price'))</th>
@@ -42,9 +42,16 @@
                   <th>{{__('product.admin.index.image')}}</th>
                   <th>{{__('product.admin.index.action')}}</th>
                 </tr>
+                <?php
+                  $index = -1;
+                ?>
                 @foreach($product as $item)
+                <?php
+                  $index++;
+                  $nubmer = 10*($product->currentPage() - 1 )
+                ?>
                 <tr>
-                  <td>{{ $item->id }}</td>
+                  <td>{{ $index + $nubmer + 1 }}</td>
                   <td>{{ $item->name }}</td>
                   <td>{{ $item->category->name }}</td>
                   <td>{{ $item->price }} &dollar;</td>

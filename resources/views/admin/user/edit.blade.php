@@ -31,6 +31,11 @@
                 <div class="form-group">
                   <label for="exampleInputName">{{__('user.admin.edit.name')}}</label>
                   <input type="text" class="form-control" name="name" value="{{$user->name}}">
+                  @if($errors->first('name')) 
+                    <span class="help-block">
+                      <strong class="text-danger">{{ $errors->first('name') }}</strong>
+                    </span>
+                  @endif
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail">{{__('user.admin.edit.email')}}</label>
@@ -39,6 +44,11 @@
                 <div class="form-group">
                   <label for="exampleInputRole">{{__('user.admin.edit.address')}}</label>
                   <input type="text" class="form-control" name="address" value="{{$user->userInfo->address}}">
+                  @if($errors->first('address')) 
+                    <span class="help-block">
+                      <strong class="text-danger">{{ $errors->first('address') }}</strong>
+                    </span>
+                  @endif
                 </div>
                 <div class="form-group">
                   <label for="address">{{ __('profile.user.update.address_shipping') }}</label>
@@ -47,10 +57,20 @@
                       <option value="{{ $shipping->id }}" {{ $shipping->is_default == App\ShippingAddress::ADDRESS_DEFAULT ? 'selected="selected"' : '' }}>{{ $shipping->address }}</option>
                     @endforeach
                   </select>
+                  @if($errors->first('shipping_id')) 
+                    <span class="help-block">
+                      <strong class="text-danger">{{ $errors->first('shipping_id') }}</strong>
+                    </span>
+                  @endif
                 </div>
                 <div class="form-group">
                   <label for="exampleInputRole">{{__('user.admin.edit.phone')}}</label>
                   <input type="text" class="form-control" name="phone" value="{{$user->userInfo->phone}}">
+                  @if($errors->first('phone')) 
+                    <span class="help-block">
+                      <strong class="text-danger">{{ $errors->first('phone') }}</strong>
+                    </span>
+                  @endif
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">{{__('user.admin.edit.avatar')}}</label>
@@ -60,7 +80,7 @@
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary" name="submit">{{__('user.admin.edit.submit')}}</button>
-                @include('admin.errors.error_validation')
+                {{-- @include('admin.errors.error_validation') --}}
               </div>
             </form>
           </div>

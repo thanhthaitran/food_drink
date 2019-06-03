@@ -34,13 +34,13 @@
                     </li>
                   </ul>
                 </div>
-                <div class="block block-language form-language">
+                {{-- <div class="block block-language form-language">
                   <div class="lg-cur"> <span> <i class="fa fa-language"></i><span class="lg-fr">&nbsp; {{ __('home.user.header.language') }}</span> <i class="fa fa-angle-down"></i> </span> </div>
                   <ul>
                     <li> <a href="{{ route('locale', ['locale' => 'en']) }}" class="locale"> <img src="{{ asset('frontend/images/flag-english.jpg') }}" alt="flag"> <span>{{ __('home.user.header.english') }}</span> </a> </li>
                     <li> <a href="{{ route('locale', ['locale' => 'vi']) }}" class="locale"> <img src="{{ asset('frontend/images/flag-vietnam.png') }}" alt="flag"> <span>{{ __('home.user.header.vietnam') }}</span> </a> </li>
                   </ul>
-                </div>
+                </div> --}}
               </div> 
             </div>
           </div>

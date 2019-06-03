@@ -36,6 +36,8 @@ class ChangeStatusOrderMail extends Mailable
             'pending' => $this->data['pending'],
             'accepted' => $this->data['accepted'],
             'rejected' => $this->data['rejected'],
+            'received' => $this->data['received'],
+            'note' => $this->data['note'],
         ]);
     }
 }

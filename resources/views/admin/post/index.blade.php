@@ -30,7 +30,7 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>@sortablelink('id', __('post.index.id'))</th>
+                  <th>{{ __('common.stt') }}</th>
                   <th>@sortablelink('user.name', __('post.index.user_name'))</th>
                   <th>@sortablelink('product.name', __('post.index.product_name'))</th>
                   <th>@sortablelink('content', __('post.index.review'))</th>
@@ -39,9 +39,16 @@
                   <th>{{__('post.index.status')}}</th>
                   <th>{{__('post.index.action')}}</th>
                 </tr>
+                <?php
+                  $index = -1;
+                ?>
                 @foreach($posts as $post)
+                <?php
+                  $index++;
+                  $nubmer = 10*($posts->currentPage() - 1 )
+                ?>
                   <tr>
-                    <td>{{ $post->id }}</td>
+                    <td>{{ $index + $nubmer + 1 }}</td>
                     <td>{{ $post->user->name }}</td>
                     <td>{{ $post->product->name }}</td>
                     <td>{{ $post->content }}</td>
@@ -63,20 +70,18 @@
                     @endif
                     </td>
                     <td>
-                      <form method="post" action="{{ route('admin.post.delete', $post->id) }}">
+                      <form method="post" action="{{ route('admin.post.delete', $post->id) }}" onsubmit="return confirmDelete()">
                         @csrf
                         @method('DELETE')
                         <button id="post_{{ $post->id }}" type="submit" class="but-trash"name="submit">
                           <i class="fa fa-trash"></i>
-                         </button>
-                       </form>
+                        </button>
+                      </form>
                     </td>
                 </tr>
                 @endforeach
               </table>
-              <div class="text-center">
-                {{ $posts->appends(\Request::except('page'))->render() }}
-              </div>
+              {{ $posts->appends(\Request::except('page'))->render() }}
             </div>
             <!-- /.box-body -->
           </div>
